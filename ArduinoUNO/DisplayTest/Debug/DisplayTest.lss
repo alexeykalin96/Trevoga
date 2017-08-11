@@ -1,0 +1,4026 @@
+
+DisplayTest.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         000000b8  00800100  00001488  0000151c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001488  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000036  008001b8  008001b8  000015d4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000015d4  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000178  00000000  00000000  00001604  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000032a7  00000000  00000000  0000177c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000005fd  00000000  00000000  00004a23  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000a4a  00000000  00000000  00005020  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000004fc  00000000  00000000  00005a6c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000a7b  00000000  00000000  00005f68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00001728  00000000  00000000  000069e3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000001e0  00000000  00000000  0000810b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 35 00 	jmp	0x6a	; 0x6a <__ctors_end>
+       4:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+       8:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+       c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      10:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      14:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      18:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      1c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      20:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      24:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      28:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      2c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      30:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      34:	0c 94 18 09 	jmp	0x1230	; 0x1230 <__vector_13>
+      38:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      3c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      40:	0c 94 f2 08 	jmp	0x11e4	; 0x11e4 <__vector_16>
+      44:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      48:	0c 94 45 09 	jmp	0x128a	; 0x128a <__vector_18>
+      4c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      50:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      54:	0c 94 ce 08 	jmp	0x119c	; 0x119c <__vector_21>
+      58:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      5c:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      60:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+      64:	0c 94 5d 00 	jmp	0xba	; 0xba <__bad_interrupt>
+
+00000068 <__ctors_start>:
+      68:	69 09       	sbc	r22, r9
+
+0000006a <__ctors_end>:
+      6a:	11 24       	eor	r1, r1
+      6c:	1f be       	out	0x3f, r1	; 63
+      6e:	cf ef       	ldi	r28, 0xFF	; 255
+      70:	d8 e0       	ldi	r29, 0x08	; 8
+      72:	de bf       	out	0x3e, r29	; 62
+      74:	cd bf       	out	0x3d, r28	; 61
+
+00000076 <__do_copy_data>:
+      76:	11 e0       	ldi	r17, 0x01	; 1
+      78:	a0 e0       	ldi	r26, 0x00	; 0
+      7a:	b1 e0       	ldi	r27, 0x01	; 1
+      7c:	e8 e8       	ldi	r30, 0x88	; 136
+      7e:	f4 e1       	ldi	r31, 0x14	; 20
+      80:	02 c0       	rjmp	.+4      	; 0x86 <__do_copy_data+0x10>
+      82:	05 90       	lpm	r0, Z+
+      84:	0d 92       	st	X+, r0
+      86:	a8 3b       	cpi	r26, 0xB8	; 184
+      88:	b1 07       	cpc	r27, r17
+      8a:	d9 f7       	brne	.-10     	; 0x82 <__do_copy_data+0xc>
+
+0000008c <__do_clear_bss>:
+      8c:	21 e0       	ldi	r18, 0x01	; 1
+      8e:	a8 eb       	ldi	r26, 0xB8	; 184
+      90:	b1 e0       	ldi	r27, 0x01	; 1
+      92:	01 c0       	rjmp	.+2      	; 0x96 <.do_clear_bss_start>
+
+00000094 <.do_clear_bss_loop>:
+      94:	1d 92       	st	X+, r1
+
+00000096 <.do_clear_bss_start>:
+      96:	ae 3e       	cpi	r26, 0xEE	; 238
+      98:	b2 07       	cpc	r27, r18
+      9a:	e1 f7       	brne	.-8      	; 0x94 <.do_clear_bss_loop>
+
+0000009c <__do_global_ctors>:
+      9c:	10 e0       	ldi	r17, 0x00	; 0
+      9e:	ca e6       	ldi	r28, 0x6A	; 106
+      a0:	d0 e0       	ldi	r29, 0x00	; 0
+      a2:	04 c0       	rjmp	.+8      	; 0xac <__do_global_ctors+0x10>
+      a4:	22 97       	sbiw	r28, 0x02	; 2
+      a6:	fe 01       	movw	r30, r28
+      a8:	0e 94 f3 09 	call	0x13e6	; 0x13e6 <__tablejump__>
+      ac:	c8 36       	cpi	r28, 0x68	; 104
+      ae:	d1 07       	cpc	r29, r17
+      b0:	c9 f7       	brne	.-14     	; 0xa4 <__do_global_ctors+0x8>
+      b2:	0e 94 cb 05 	call	0xb96	; 0xb96 <main>
+      b6:	0c 94 42 0a 	jmp	0x1484	; 0x1484 <_exit>
+
+000000ba <__bad_interrupt>:
+      ba:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000be <_ZN5Sound13PWM_GeneratorEv>:
+		counter = 0;
+	}
+}
+
+void Sound::PWM_Generator(void)
+{
+      be:	08 95       	ret
+
+000000c0 <_ZN8SoundOne13PWM_GeneratorEv>:
+	
+}
+
+void SoundOne::PWM_Generator(void)
+{
+	if(point == 0)
+      c0:	80 91 ed 01 	lds	r24, 0x01ED
+      c4:	81 11       	cpse	r24, r1
+      c6:	0f c0       	rjmp	.+30     	; 0xe6 <_ZN8SoundOne13PWM_GeneratorEv+0x26>
+	{
+		OCR2A = 30; OCR2B = OCR2A/2;
+      c8:	e3 eb       	ldi	r30, 0xB3	; 179
+      ca:	f0 e0       	ldi	r31, 0x00	; 0
+      cc:	8e e1       	ldi	r24, 0x1E	; 30
+      ce:	80 83       	st	Z, r24
+      d0:	80 81       	ld	r24, Z
+      d2:	86 95       	lsr	r24
+      d4:	80 93 b4 00 	sts	0x00B4, r24
+		DDRD |= (1 << 3);
+      d8:	53 9a       	sbi	0x0a, 3	; 10
+		DDRB |= (1 << 3);
+      da:	23 9a       	sbi	0x04, 3	; 4
+		PORTB |= (1 << 3);
+      dc:	2b 9a       	sbi	0x05, 3	; 5
+		point = 1;
+      de:	81 e0       	ldi	r24, 0x01	; 1
+      e0:	80 93 ed 01 	sts	0x01ED, r24
+      e4:	08 95       	ret
+	}
+	else if(point == 1)
+      e6:	80 91 ed 01 	lds	r24, 0x01ED
+      ea:	81 30       	cpi	r24, 0x01	; 1
+      ec:	91 f4       	brne	.+36     	; 0x112 <_ZN8SoundOne13PWM_GeneratorEv+0x52>
+	{
+		OCR2A--; OCR2B = OCR2A/2;
+      ee:	e3 eb       	ldi	r30, 0xB3	; 179
+      f0:	f0 e0       	ldi	r31, 0x00	; 0
+      f2:	80 81       	ld	r24, Z
+      f4:	81 50       	subi	r24, 0x01	; 1
+      f6:	80 83       	st	Z, r24
+      f8:	80 81       	ld	r24, Z
+      fa:	86 95       	lsr	r24
+      fc:	80 93 b4 00 	sts	0x00B4, r24
+		if(OCR2A <= 10)
+     100:	80 81       	ld	r24, Z
+     102:	8b 30       	cpi	r24, 0x0B	; 11
+     104:	c0 f4       	brcc	.+48     	; 0x136 <_ZN8SoundOne13PWM_GeneratorEv+0x76>
+		{
+			DDRB |= (1 << 3);
+     106:	23 9a       	sbi	0x04, 3	; 4
+			PORTB &= ~(1 << 3);
+     108:	2b 98       	cbi	0x05, 3	; 5
+			point = 2;
+     10a:	82 e0       	ldi	r24, 0x02	; 2
+     10c:	80 93 ed 01 	sts	0x01ED, r24
+     110:	08 95       	ret
+		}
+	}
+	else if(point == 2)
+     112:	80 91 ed 01 	lds	r24, 0x01ED
+     116:	82 30       	cpi	r24, 0x02	; 2
+     118:	71 f4       	brne	.+28     	; 0x136 <_ZN8SoundOne13PWM_GeneratorEv+0x76>
+	{
+		OCR2A++; OCR2B = OCR2A/2;
+     11a:	e3 eb       	ldi	r30, 0xB3	; 179
+     11c:	f0 e0       	ldi	r31, 0x00	; 0
+     11e:	80 81       	ld	r24, Z
+     120:	8f 5f       	subi	r24, 0xFF	; 255
+     122:	80 83       	st	Z, r24
+     124:	80 81       	ld	r24, Z
+     126:	86 95       	lsr	r24
+     128:	80 93 b4 00 	sts	0x00B4, r24
+		if(OCR2A >= 100)
+     12c:	80 81       	ld	r24, Z
+     12e:	84 36       	cpi	r24, 0x64	; 100
+     130:	10 f0       	brcs	.+4      	; 0x136 <_ZN8SoundOne13PWM_GeneratorEv+0x76>
+		{
+			point = 0;
+     132:	10 92 ed 01 	sts	0x01ED, r1
+     136:	08 95       	ret
+
+00000138 <_ZN8SoundTwo13PWM_GeneratorEv>:
+	}
+}
+
+void SoundTwo::PWM_Generator(void)
+{
+	if(point == 0)
+     138:	80 91 ed 01 	lds	r24, 0x01ED
+     13c:	81 11       	cpse	r24, r1
+     13e:	15 c0       	rjmp	.+42     	; 0x16a <_ZN8SoundTwo13PWM_GeneratorEv+0x32>
+	{
+		OCR2A = 30; OCR2B = OCR2A/2; timer = 100;
+     140:	e3 eb       	ldi	r30, 0xB3	; 179
+     142:	f0 e0       	ldi	r31, 0x00	; 0
+     144:	8e e1       	ldi	r24, 0x1E	; 30
+     146:	80 83       	st	Z, r24
+     148:	80 81       	ld	r24, Z
+     14a:	86 95       	lsr	r24
+     14c:	80 93 b4 00 	sts	0x00B4, r24
+     150:	84 e6       	ldi	r24, 0x64	; 100
+     152:	90 e0       	ldi	r25, 0x00	; 0
+     154:	90 93 ec 01 	sts	0x01EC, r25
+     158:	80 93 eb 01 	sts	0x01EB, r24
+		DDRD |= (1 << 3);
+     15c:	53 9a       	sbi	0x0a, 3	; 10
+		DDRB |= (1 << 3);
+     15e:	23 9a       	sbi	0x04, 3	; 4
+		PORTB |= (1 << 3);
+     160:	2b 9a       	sbi	0x05, 3	; 5
+		point = 1;
+     162:	81 e0       	ldi	r24, 0x01	; 1
+     164:	80 93 ed 01 	sts	0x01ED, r24
+     168:	08 95       	ret
+	}
+	else if(point == 1)
+     16a:	80 91 ed 01 	lds	r24, 0x01ED
+     16e:	81 30       	cpi	r24, 0x01	; 1
+     170:	a9 f4       	brne	.+42     	; 0x19c <_ZN8SoundTwo13PWM_GeneratorEv+0x64>
+	{
+		timer--;
+     172:	80 91 eb 01 	lds	r24, 0x01EB
+     176:	90 91 ec 01 	lds	r25, 0x01EC
+     17a:	01 97       	sbiw	r24, 0x01	; 1
+     17c:	90 93 ec 01 	sts	0x01EC, r25
+     180:	80 93 eb 01 	sts	0x01EB, r24
+		if(timer <= 5)
+     184:	80 91 eb 01 	lds	r24, 0x01EB
+     188:	90 91 ec 01 	lds	r25, 0x01EC
+     18c:	06 97       	sbiw	r24, 0x06	; 6
+     18e:	e0 f4       	brcc	.+56     	; 0x1c8 <_ZN8SoundTwo13PWM_GeneratorEv+0x90>
+		{
+			DDRD &= ~(1 << 3);
+     190:	53 98       	cbi	0x0a, 3	; 10
+			PORTB &= ~(1 << 3);
+     192:	2b 98       	cbi	0x05, 3	; 5
+			point = 2;
+     194:	82 e0       	ldi	r24, 0x02	; 2
+     196:	80 93 ed 01 	sts	0x01ED, r24
+     19a:	08 95       	ret
+		}
+	}
+	else if(point == 2)
+     19c:	80 91 ed 01 	lds	r24, 0x01ED
+     1a0:	82 30       	cpi	r24, 0x02	; 2
+     1a2:	91 f4       	brne	.+36     	; 0x1c8 <_ZN8SoundTwo13PWM_GeneratorEv+0x90>
+	{
+		timer++;
+     1a4:	80 91 eb 01 	lds	r24, 0x01EB
+     1a8:	90 91 ec 01 	lds	r25, 0x01EC
+     1ac:	01 96       	adiw	r24, 0x01	; 1
+     1ae:	90 93 ec 01 	sts	0x01EC, r25
+     1b2:	80 93 eb 01 	sts	0x01EB, r24
+		if(timer >= 150)
+     1b6:	80 91 eb 01 	lds	r24, 0x01EB
+     1ba:	90 91 ec 01 	lds	r25, 0x01EC
+     1be:	86 39       	cpi	r24, 0x96	; 150
+     1c0:	91 05       	cpc	r25, r1
+     1c2:	10 f0       	brcs	.+4      	; 0x1c8 <_ZN8SoundTwo13PWM_GeneratorEv+0x90>
+		{
+			point = 0;
+     1c4:	10 92 ed 01 	sts	0x01ED, r1
+     1c8:	08 95       	ret
+
+000001ca <_ZN10SoundThree13PWM_GeneratorEv>:
+	}
+}
+
+void SoundThree::PWM_Generator(void)
+{
+	if(counter < 4)
+     1ca:	80 91 ea 01 	lds	r24, 0x01EA
+     1ce:	84 30       	cpi	r24, 0x04	; 4
+     1d0:	08 f0       	brcs	.+2      	; 0x1d4 <_ZN10SoundThree13PWM_GeneratorEv+0xa>
+     1d2:	40 c0       	rjmp	.+128    	; 0x254 <_ZN10SoundThree13PWM_GeneratorEv+0x8a>
+	{
+		if(point == 0)
+     1d4:	80 91 ed 01 	lds	r24, 0x01ED
+     1d8:	81 11       	cpse	r24, r1
+     1da:	0f c0       	rjmp	.+30     	; 0x1fa <_ZN10SoundThree13PWM_GeneratorEv+0x30>
+		{
+			OCR2A = 30; OCR2B = OCR2A/2;
+     1dc:	e3 eb       	ldi	r30, 0xB3	; 179
+     1de:	f0 e0       	ldi	r31, 0x00	; 0
+     1e0:	8e e1       	ldi	r24, 0x1E	; 30
+     1e2:	80 83       	st	Z, r24
+     1e4:	80 81       	ld	r24, Z
+     1e6:	86 95       	lsr	r24
+     1e8:	80 93 b4 00 	sts	0x00B4, r24
+			DDRD |= (1 << 3);
+     1ec:	53 9a       	sbi	0x0a, 3	; 10
+			DDRB |= (1 << 3);
+     1ee:	23 9a       	sbi	0x04, 3	; 4
+			PORTB |= (1 << 3);
+     1f0:	2b 9a       	sbi	0x05, 3	; 5
+			point = 1;
+     1f2:	81 e0       	ldi	r24, 0x01	; 1
+     1f4:	80 93 ed 01 	sts	0x01ED, r24
+     1f8:	2d c0       	rjmp	.+90     	; 0x254 <_ZN10SoundThree13PWM_GeneratorEv+0x8a>
+		}
+		else if(point == 1)
+     1fa:	80 91 ed 01 	lds	r24, 0x01ED
+     1fe:	81 30       	cpi	r24, 0x01	; 1
+     200:	91 f4       	brne	.+36     	; 0x226 <_ZN10SoundThree13PWM_GeneratorEv+0x5c>
+		{
+			OCR2A--; OCR2B = OCR2A/2;
+     202:	e3 eb       	ldi	r30, 0xB3	; 179
+     204:	f0 e0       	ldi	r31, 0x00	; 0
+     206:	80 81       	ld	r24, Z
+     208:	81 50       	subi	r24, 0x01	; 1
+     20a:	80 83       	st	Z, r24
+     20c:	80 81       	ld	r24, Z
+     20e:	86 95       	lsr	r24
+     210:	80 93 b4 00 	sts	0x00B4, r24
+			if(OCR2A <= 10)
+     214:	80 81       	ld	r24, Z
+     216:	8b 30       	cpi	r24, 0x0B	; 11
+     218:	e8 f4       	brcc	.+58     	; 0x254 <_ZN10SoundThree13PWM_GeneratorEv+0x8a>
+			{
+				DDRB |= (1 << 3);
+     21a:	23 9a       	sbi	0x04, 3	; 4
+				PORTB &= ~(1 << 3);
+     21c:	2b 98       	cbi	0x05, 3	; 5
+				point = 2;
+     21e:	82 e0       	ldi	r24, 0x02	; 2
+     220:	80 93 ed 01 	sts	0x01ED, r24
+     224:	17 c0       	rjmp	.+46     	; 0x254 <_ZN10SoundThree13PWM_GeneratorEv+0x8a>
+			}
+		}
+		else if(point == 2)
+     226:	80 91 ed 01 	lds	r24, 0x01ED
+     22a:	82 30       	cpi	r24, 0x02	; 2
+     22c:	99 f4       	brne	.+38     	; 0x254 <_ZN10SoundThree13PWM_GeneratorEv+0x8a>
+		{
+			OCR2A++; OCR2B = OCR2A/2;
+     22e:	e3 eb       	ldi	r30, 0xB3	; 179
+     230:	f0 e0       	ldi	r31, 0x00	; 0
+     232:	80 81       	ld	r24, Z
+     234:	8f 5f       	subi	r24, 0xFF	; 255
+     236:	80 83       	st	Z, r24
+     238:	80 81       	ld	r24, Z
+     23a:	86 95       	lsr	r24
+     23c:	80 93 b4 00 	sts	0x00B4, r24
+			if(OCR2A >= 100)
+     240:	80 81       	ld	r24, Z
+     242:	84 36       	cpi	r24, 0x64	; 100
+     244:	38 f0       	brcs	.+14     	; 0x254 <_ZN10SoundThree13PWM_GeneratorEv+0x8a>
+			{
+				counter++;
+     246:	80 91 ea 01 	lds	r24, 0x01EA
+     24a:	8f 5f       	subi	r24, 0xFF	; 255
+     24c:	80 93 ea 01 	sts	0x01EA, r24
+				point = 0;
+     250:	10 92 ed 01 	sts	0x01ED, r1
+			}
+		}
+	}
+	
+	if(counter >= 4)
+     254:	80 91 ea 01 	lds	r24, 0x01EA
+     258:	84 30       	cpi	r24, 0x04	; 4
+     25a:	08 f4       	brcc	.+2      	; 0x25e <_ZN10SoundThree13PWM_GeneratorEv+0x94>
+     25c:	53 c0       	rjmp	.+166    	; 0x304 <_ZN10SoundThree13PWM_GeneratorEv+0x13a>
+	{
+		if(point == 0)
+     25e:	80 91 ed 01 	lds	r24, 0x01ED
+     262:	81 11       	cpse	r24, r1
+     264:	15 c0       	rjmp	.+42     	; 0x290 <_ZN10SoundThree13PWM_GeneratorEv+0xc6>
+		{
+			OCR2A = 30; OCR2B = OCR2A/2; timer = 100;
+     266:	e3 eb       	ldi	r30, 0xB3	; 179
+     268:	f0 e0       	ldi	r31, 0x00	; 0
+     26a:	8e e1       	ldi	r24, 0x1E	; 30
+     26c:	80 83       	st	Z, r24
+     26e:	80 81       	ld	r24, Z
+     270:	86 95       	lsr	r24
+     272:	80 93 b4 00 	sts	0x00B4, r24
+     276:	84 e6       	ldi	r24, 0x64	; 100
+     278:	90 e0       	ldi	r25, 0x00	; 0
+     27a:	90 93 ec 01 	sts	0x01EC, r25
+     27e:	80 93 eb 01 	sts	0x01EB, r24
+			DDRD |= (1 << 3);
+     282:	53 9a       	sbi	0x0a, 3	; 10
+			DDRB |= (1 << 3);
+     284:	23 9a       	sbi	0x04, 3	; 4
+			PORTB |= (1 << 3);
+     286:	2b 9a       	sbi	0x05, 3	; 5
+			point = 1;
+     288:	81 e0       	ldi	r24, 0x01	; 1
+     28a:	80 93 ed 01 	sts	0x01ED, r24
+     28e:	08 95       	ret
+		}
+		else if(point == 1)
+     290:	80 91 ed 01 	lds	r24, 0x01ED
+     294:	81 30       	cpi	r24, 0x01	; 1
+     296:	a9 f4       	brne	.+42     	; 0x2c2 <_ZN10SoundThree13PWM_GeneratorEv+0xf8>
+		{
+			timer--;
+     298:	80 91 eb 01 	lds	r24, 0x01EB
+     29c:	90 91 ec 01 	lds	r25, 0x01EC
+     2a0:	01 97       	sbiw	r24, 0x01	; 1
+     2a2:	90 93 ec 01 	sts	0x01EC, r25
+     2a6:	80 93 eb 01 	sts	0x01EB, r24
+			if(timer <= 5)
+     2aa:	80 91 eb 01 	lds	r24, 0x01EB
+     2ae:	90 91 ec 01 	lds	r25, 0x01EC
+     2b2:	06 97       	sbiw	r24, 0x06	; 6
+     2b4:	38 f5       	brcc	.+78     	; 0x304 <_ZN10SoundThree13PWM_GeneratorEv+0x13a>
+			{
+				DDRD &= ~(1 << 3);
+     2b6:	53 98       	cbi	0x0a, 3	; 10
+				PORTB &= ~(1 << 3);
+     2b8:	2b 98       	cbi	0x05, 3	; 5
+				point = 2;
+     2ba:	82 e0       	ldi	r24, 0x02	; 2
+     2bc:	80 93 ed 01 	sts	0x01ED, r24
+     2c0:	08 95       	ret
+			}
+		}
+		else if(point == 2)
+     2c2:	80 91 ed 01 	lds	r24, 0x01ED
+     2c6:	82 30       	cpi	r24, 0x02	; 2
+     2c8:	e9 f4       	brne	.+58     	; 0x304 <_ZN10SoundThree13PWM_GeneratorEv+0x13a>
+		{
+			timer++;
+     2ca:	80 91 eb 01 	lds	r24, 0x01EB
+     2ce:	90 91 ec 01 	lds	r25, 0x01EC
+     2d2:	01 96       	adiw	r24, 0x01	; 1
+     2d4:	90 93 ec 01 	sts	0x01EC, r25
+     2d8:	80 93 eb 01 	sts	0x01EB, r24
+			if(timer >= 150)
+     2dc:	80 91 eb 01 	lds	r24, 0x01EB
+     2e0:	90 91 ec 01 	lds	r25, 0x01EC
+     2e4:	86 39       	cpi	r24, 0x96	; 150
+     2e6:	91 05       	cpc	r25, r1
+     2e8:	68 f0       	brcs	.+26     	; 0x304 <_ZN10SoundThree13PWM_GeneratorEv+0x13a>
+			{
+				counter++;
+     2ea:	80 91 ea 01 	lds	r24, 0x01EA
+     2ee:	8f 5f       	subi	r24, 0xFF	; 255
+     2f0:	80 93 ea 01 	sts	0x01EA, r24
+				point = 0;
+     2f4:	10 92 ed 01 	sts	0x01ED, r1
+				if(counter == 8)
+     2f8:	80 91 ea 01 	lds	r24, 0x01EA
+     2fc:	88 30       	cpi	r24, 0x08	; 8
+     2fe:	11 f4       	brne	.+4      	; 0x304 <_ZN10SoundThree13PWM_GeneratorEv+0x13a>
+				{
+					counter = 0;
+     300:	10 92 ea 01 	sts	0x01EA, r1
+     304:	08 95       	ret
+
+00000306 <_ZN7Display7commandEhhhhh>:
+﻿#include "Display.h"
+#include <avr/io.h>
+#include <util/delay.h>
+
+void Display::command(uint8_t RS_val, uint8_t D4_val, uint8_t D5_val, uint8_t D6_val, uint8_t D7_val)
+{
+     306:	ef 92       	push	r14
+     308:	0f 93       	push	r16
+     30a:	8e 2d       	mov	r24, r14
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     30c:	9f b7       	in	r25, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     30e:	f8 94       	cli
+	{
+		// RS устанавливаем 0-у если идут команды, 1-у если идут данные
+		if(RS_val == 0) {CPORT &= ~(1 << RS);}
+     310:	61 11       	cpse	r22, r1
+     312:	02 c0       	rjmp	.+4      	; 0x318 <_ZN7Display7commandEhhhhh+0x12>
+     314:	28 98       	cbi	0x05, 0	; 5
+     316:	03 c0       	rjmp	.+6      	; 0x31e <_ZN7Display7commandEhhhhh+0x18>
+		else if(RS_val == 1) {CPORT |= (1 << RS);}
+     318:	61 30       	cpi	r22, 0x01	; 1
+     31a:	09 f4       	brne	.+2      	; 0x31e <_ZN7Display7commandEhhhhh+0x18>
+     31c:	28 9a       	sbi	0x05, 0	; 5
+		
+		// E устанавливаем в 0, пока нет стробирующего импульса
+		CPORT &= ~(1 << E);
+     31e:	29 98       	cbi	0x05, 1	; 5
+
+		// выставляем на DB4-DB7 логические нули и единицы
+		if(D4_val == 0) {DPORT &= ~(1 << D4);}
+     320:	41 11       	cpse	r20, r1
+     322:	02 c0       	rjmp	.+4      	; 0x328 <_ZN7Display7commandEhhhhh+0x22>
+     324:	5c 98       	cbi	0x0b, 4	; 11
+     326:	03 c0       	rjmp	.+6      	; 0x32e <_ZN7Display7commandEhhhhh+0x28>
+		else if(D4_val == 1) {DPORT |= (1 << D4);}
+     328:	41 30       	cpi	r20, 0x01	; 1
+     32a:	09 f4       	brne	.+2      	; 0x32e <_ZN7Display7commandEhhhhh+0x28>
+     32c:	5c 9a       	sbi	0x0b, 4	; 11
+		if(D5_val == 0) {DPORT &= ~(1 << D5);}
+     32e:	21 11       	cpse	r18, r1
+     330:	02 c0       	rjmp	.+4      	; 0x336 <_ZN7Display7commandEhhhhh+0x30>
+     332:	5d 98       	cbi	0x0b, 5	; 11
+     334:	03 c0       	rjmp	.+6      	; 0x33c <_ZN7Display7commandEhhhhh+0x36>
+		else if(D5_val == 1) {DPORT |= (1 << D5);}
+     336:	21 30       	cpi	r18, 0x01	; 1
+     338:	09 f4       	brne	.+2      	; 0x33c <_ZN7Display7commandEhhhhh+0x36>
+     33a:	5d 9a       	sbi	0x0b, 5	; 11
+		if(D6_val == 0) {DPORT &= ~(1 << D6);}
+     33c:	01 11       	cpse	r16, r1
+     33e:	02 c0       	rjmp	.+4      	; 0x344 <_ZN7Display7commandEhhhhh+0x3e>
+     340:	5e 98       	cbi	0x0b, 6	; 11
+     342:	03 c0       	rjmp	.+6      	; 0x34a <_ZN7Display7commandEhhhhh+0x44>
+		else if(D6_val == 1) {DPORT |= (1 << D6);}
+     344:	01 30       	cpi	r16, 0x01	; 1
+     346:	09 f4       	brne	.+2      	; 0x34a <_ZN7Display7commandEhhhhh+0x44>
+     348:	5e 9a       	sbi	0x0b, 6	; 11
+		if(D7_val == 0) {DPORT &= ~(1 << D7);}
+     34a:	81 11       	cpse	r24, r1
+     34c:	02 c0       	rjmp	.+4      	; 0x352 <_ZN7Display7commandEhhhhh+0x4c>
+     34e:	5f 98       	cbi	0x0b, 7	; 11
+     350:	03 c0       	rjmp	.+6      	; 0x358 <_ZN7Display7commandEhhhhh+0x52>
+		else if(D7_val == 1) {DPORT |= (1 << D7);}
+     352:	81 30       	cpi	r24, 0x01	; 1
+     354:	09 f4       	brne	.+2      	; 0x358 <_ZN7Display7commandEhhhhh+0x52>
+     356:	5f 9a       	sbi	0x0b, 7	; 11
+
+		CPORT |= (1 << E);
+     358:	29 9a       	sbi	0x05, 1	; 5
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     35a:	8a e1       	ldi	r24, 0x1A	; 26
+     35c:	8a 95       	dec	r24
+     35e:	f1 f7       	brne	.-4      	; 0x35c <_ZN7Display7commandEhhhhh+0x56>
+     360:	00 c0       	rjmp	.+0      	; 0x362 <_ZN7Display7commandEhhhhh+0x5c>
+		_delay_us(mks_strobe);
+		CPORT &= ~(1 << E);
+     362:	29 98       	cbi	0x05, 1	; 5
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     364:	9f bf       	out	0x3f, r25	; 63
+	}
+}
+     366:	0f 91       	pop	r16
+     368:	ef 90       	pop	r14
+     36a:	08 95       	ret
+
+0000036c <_ZN7Display4initEv>:
+
+void Display::init(void)
+{
+     36c:	ef 92       	push	r14
+     36e:	0f 93       	push	r16
+     370:	1f 93       	push	r17
+     372:	cf 93       	push	r28
+     374:	df 93       	push	r29
+     376:	ec 01       	movw	r28, r24
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     378:	1f b7       	in	r17, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     37a:	f8 94       	cli
+	{
+		//Инициализация портов на выход
+		CDDR |= (1 << RS)|(1 << E);
+     37c:	84 b1       	in	r24, 0x04	; 4
+     37e:	83 60       	ori	r24, 0x03	; 3
+     380:	84 b9       	out	0x04, r24	; 4
+		DDDR |= (1 << D7)|(1 << D6)|(1 << D5)|(1 << D4);
+     382:	8a b1       	in	r24, 0x0a	; 10
+     384:	80 6f       	ori	r24, 0xF0	; 240
+     386:	8a b9       	out	0x0a, r24	; 10
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     388:	2f ef       	ldi	r18, 0xFF	; 255
+     38a:	89 ef       	ldi	r24, 0xF9	; 249
+     38c:	90 e0       	ldi	r25, 0x00	; 0
+     38e:	21 50       	subi	r18, 0x01	; 1
+     390:	80 40       	sbci	r24, 0x00	; 0
+     392:	90 40       	sbci	r25, 0x00	; 0
+     394:	e1 f7       	brne	.-8      	; 0x38e <_ZN7Display4initEv+0x22>
+     396:	00 c0       	rjmp	.+0      	; 0x398 <_ZN7Display4initEv+0x2c>
+     398:	00 00       	nop
+		_delay_ms(20); // при запуске рекомендуется выждать 20 мс
+		
+		//команда №6 (установка разрядности) D4-D7
+		command(0,1,1,0,0); // RS=0, DB4=1, DB5=1, DB6=0, DB7=0
+     39a:	e1 2c       	mov	r14, r1
+     39c:	00 e0       	ldi	r16, 0x00	; 0
+     39e:	21 e0       	ldi	r18, 0x01	; 1
+     3a0:	41 e0       	ldi	r20, 0x01	; 1
+     3a2:	60 e0       	ldi	r22, 0x00	; 0
+     3a4:	ce 01       	movw	r24, r28
+     3a6:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     3aa:	8f e7       	ldi	r24, 0x7F	; 127
+     3ac:	9e e3       	ldi	r25, 0x3E	; 62
+     3ae:	01 97       	sbiw	r24, 0x01	; 1
+     3b0:	f1 f7       	brne	.-4      	; 0x3ae <_ZN7Display4initEv+0x42>
+     3b2:	00 c0       	rjmp	.+0      	; 0x3b4 <_ZN7Display4initEv+0x48>
+     3b4:	00 00       	nop
+		_delay_us(mks_after_com);
+
+		//команда №6 (установка разрядности 4-е бита) D4-D7
+		command(0,0,1,0,0); // RS=0, DB4=0, DB5=1, DB6=0, DB7=0
+     3b6:	21 e0       	ldi	r18, 0x01	; 1
+     3b8:	40 e0       	ldi	r20, 0x00	; 0
+     3ba:	60 e0       	ldi	r22, 0x00	; 0
+     3bc:	ce 01       	movw	r24, r28
+     3be:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     3c2:	8f e7       	ldi	r24, 0x7F	; 127
+     3c4:	9e e3       	ldi	r25, 0x3E	; 62
+     3c6:	01 97       	sbiw	r24, 0x01	; 1
+     3c8:	f1 f7       	brne	.-4      	; 0x3c6 <_ZN7Display4initEv+0x5a>
+     3ca:	00 c0       	rjmp	.+0      	; 0x3cc <_ZN7Display4initEv+0x60>
+     3cc:	00 00       	nop
+		_delay_us(mks_after_com);
+		command(0,0,1,0,0); // RS=0, DB4=0, DB5=1, DB6=0, DB7=0
+     3ce:	21 e0       	ldi	r18, 0x01	; 1
+     3d0:	40 e0       	ldi	r20, 0x00	; 0
+     3d2:	60 e0       	ldi	r22, 0x00	; 0
+     3d4:	ce 01       	movw	r24, r28
+     3d6:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+		command(0,0,0,0,1); // RS=0, DB4=0, DB5=0, DB6=0, DB7=1
+     3da:	ee 24       	eor	r14, r14
+     3dc:	e3 94       	inc	r14
+     3de:	20 e0       	ldi	r18, 0x00	; 0
+     3e0:	40 e0       	ldi	r20, 0x00	; 0
+     3e2:	60 e0       	ldi	r22, 0x00	; 0
+     3e4:	ce 01       	movw	r24, r28
+     3e6:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     3ea:	8f e7       	ldi	r24, 0x7F	; 127
+     3ec:	9e e3       	ldi	r25, 0x3E	; 62
+     3ee:	01 97       	sbiw	r24, 0x01	; 1
+     3f0:	f1 f7       	brne	.-4      	; 0x3ee <_ZN7Display4initEv+0x82>
+     3f2:	00 c0       	rjmp	.+0      	; 0x3f4 <_ZN7Display4initEv+0x88>
+     3f4:	00 00       	nop
+		_delay_us(mks_after_com);
+
+		//команда №4 (выключение дисплея)
+		command(0,0,0,0,0); // RS=0, DB4=0, DB5=0, DB6=0, DB7=0
+     3f6:	e1 2c       	mov	r14, r1
+     3f8:	20 e0       	ldi	r18, 0x00	; 0
+     3fa:	40 e0       	ldi	r20, 0x00	; 0
+     3fc:	60 e0       	ldi	r22, 0x00	; 0
+     3fe:	ce 01       	movw	r24, r28
+     400:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+		command(0,0,0,0,1); // RS=0, DB4=0, DB5=0, DB6=0, DB7=1
+     404:	ee 24       	eor	r14, r14
+     406:	e3 94       	inc	r14
+     408:	20 e0       	ldi	r18, 0x00	; 0
+     40a:	40 e0       	ldi	r20, 0x00	; 0
+     40c:	60 e0       	ldi	r22, 0x00	; 0
+     40e:	ce 01       	movw	r24, r28
+     410:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     414:	8f e7       	ldi	r24, 0x7F	; 127
+     416:	9e e3       	ldi	r25, 0x3E	; 62
+     418:	01 97       	sbiw	r24, 0x01	; 1
+     41a:	f1 f7       	brne	.-4      	; 0x418 <_ZN7Display4initEv+0xac>
+     41c:	00 c0       	rjmp	.+0      	; 0x41e <_ZN7Display4initEv+0xb2>
+     41e:	00 00       	nop
+		_delay_us(mks_after_com);
+
+		//команда №1 (сброс дисплея)
+		command(0,0,0,0,0); // RS=0, DB4=0, DB5=0, DB6=0, DB7=0
+     420:	e1 2c       	mov	r14, r1
+     422:	20 e0       	ldi	r18, 0x00	; 0
+     424:	40 e0       	ldi	r20, 0x00	; 0
+     426:	60 e0       	ldi	r22, 0x00	; 0
+     428:	ce 01       	movw	r24, r28
+     42a:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+		command(0,1,0,0,0); // RS=0, DB4=1, DB5=0, DB6=0, DB7=0
+     42e:	20 e0       	ldi	r18, 0x00	; 0
+     430:	41 e0       	ldi	r20, 0x01	; 1
+     432:	60 e0       	ldi	r22, 0x00	; 0
+     434:	ce 01       	movw	r24, r28
+     436:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     43a:	8f e7       	ldi	r24, 0x7F	; 127
+     43c:	9e e3       	ldi	r25, 0x3E	; 62
+     43e:	01 97       	sbiw	r24, 0x01	; 1
+     440:	f1 f7       	brne	.-4      	; 0x43e <_ZN7Display4initEv+0xd2>
+     442:	00 c0       	rjmp	.+0      	; 0x444 <_ZN7Display4initEv+0xd8>
+     444:	00 00       	nop
+		_delay_us(mks_after_com); // ожидаем 40мкс, время на обработку команд (см. таблицу)
+
+		//команда №3 (при записи курсор движется в право)
+		command(0,0,0,0,0); // RS=0, DB4=0, DB5=0, DB6=0, DB7=0
+     446:	20 e0       	ldi	r18, 0x00	; 0
+     448:	40 e0       	ldi	r20, 0x00	; 0
+     44a:	60 e0       	ldi	r22, 0x00	; 0
+     44c:	ce 01       	movw	r24, r28
+     44e:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+		command(0,0,1,1,0); // RS=0, DB4=0, DB5=1, DB6=1, DB7=0
+     452:	01 e0       	ldi	r16, 0x01	; 1
+     454:	21 e0       	ldi	r18, 0x01	; 1
+     456:	40 e0       	ldi	r20, 0x00	; 0
+     458:	60 e0       	ldi	r22, 0x00	; 0
+     45a:	ce 01       	movw	r24, r28
+     45c:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     460:	8f e7       	ldi	r24, 0x7F	; 127
+     462:	9e e3       	ldi	r25, 0x3E	; 62
+     464:	01 97       	sbiw	r24, 0x01	; 1
+     466:	f1 f7       	brne	.-4      	; 0x464 <_ZN7Display4initEv+0xf8>
+     468:	00 c0       	rjmp	.+0      	; 0x46a <_ZN7Display4initEv+0xfe>
+     46a:	00 00       	nop
+		_delay_us(mks_after_com);
+
+		//команда №4 (включение дисплея)
+		command(0,0,0,0,0); // RS=0, DB4=0, DB5=0, DB6=0, DB7=0
+     46c:	00 e0       	ldi	r16, 0x00	; 0
+     46e:	20 e0       	ldi	r18, 0x00	; 0
+     470:	40 e0       	ldi	r20, 0x00	; 0
+     472:	60 e0       	ldi	r22, 0x00	; 0
+     474:	ce 01       	movw	r24, r28
+     476:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+		command(0,0,0,1,1); // RS=0, DB4=0, DB5=0, DB6=1, DB7=1
+     47a:	ee 24       	eor	r14, r14
+     47c:	e3 94       	inc	r14
+     47e:	01 e0       	ldi	r16, 0x01	; 1
+     480:	20 e0       	ldi	r18, 0x00	; 0
+     482:	40 e0       	ldi	r20, 0x00	; 0
+     484:	60 e0       	ldi	r22, 0x00	; 0
+     486:	ce 01       	movw	r24, r28
+     488:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     48c:	8f e7       	ldi	r24, 0x7F	; 127
+     48e:	9e e3       	ldi	r25, 0x3E	; 62
+     490:	01 97       	sbiw	r24, 0x01	; 1
+     492:	f1 f7       	brne	.-4      	; 0x490 <_ZN7Display4initEv+0x124>
+     494:	00 c0       	rjmp	.+0      	; 0x496 <_ZN7Display4initEv+0x12a>
+     496:	00 00       	nop
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     498:	1f bf       	out	0x3f, r17	; 63
+		_delay_us(mks_after_com);
+	}
+}
+     49a:	df 91       	pop	r29
+     49c:	cf 91       	pop	r28
+     49e:	1f 91       	pop	r17
+     4a0:	0f 91       	pop	r16
+     4a2:	ef 90       	pop	r14
+     4a4:	08 95       	ret
+
+000004a6 <_ZN7Display11clearScreenEv>:
+
+void Display::clearScreen(void)
+{
+     4a6:	ef 92       	push	r14
+     4a8:	0f 93       	push	r16
+     4aa:	1f 93       	push	r17
+     4ac:	cf 93       	push	r28
+     4ae:	df 93       	push	r29
+     4b0:	ec 01       	movw	r28, r24
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     4b2:	1f b7       	in	r17, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     4b4:	f8 94       	cli
+	{
+		command(0,0,0,0,0);
+     4b6:	e1 2c       	mov	r14, r1
+     4b8:	00 e0       	ldi	r16, 0x00	; 0
+     4ba:	20 e0       	ldi	r18, 0x00	; 0
+     4bc:	40 e0       	ldi	r20, 0x00	; 0
+     4be:	60 e0       	ldi	r22, 0x00	; 0
+     4c0:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+		command(0,1,0,0,0);
+     4c4:	20 e0       	ldi	r18, 0x00	; 0
+     4c6:	41 e0       	ldi	r20, 0x01	; 1
+     4c8:	60 e0       	ldi	r22, 0x00	; 0
+     4ca:	ce 01       	movw	r24, r28
+     4cc:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     4d0:	8f e7       	ldi	r24, 0x7F	; 127
+     4d2:	9e e3       	ldi	r25, 0x3E	; 62
+     4d4:	01 97       	sbiw	r24, 0x01	; 1
+     4d6:	f1 f7       	brne	.-4      	; 0x4d4 <_ZN7Display11clearScreenEv+0x2e>
+     4d8:	00 c0       	rjmp	.+0      	; 0x4da <_ZN7Display11clearScreenEv+0x34>
+     4da:	00 00       	nop
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     4dc:	1f bf       	out	0x3f, r17	; 63
+		_delay_us(mks_after_com);
+	}
+}
+     4de:	df 91       	pop	r29
+     4e0:	cf 91       	pop	r28
+     4e2:	1f 91       	pop	r17
+     4e4:	0f 91       	pop	r16
+     4e6:	ef 90       	pop	r14
+     4e8:	08 95       	ret
+
+000004ea <_ZN7Display9setCursorEhh>:
+
+void Display::setCursor(uint8_t numberOfString, uint8_t position)
+{
+     4ea:	df 92       	push	r13
+     4ec:	ef 92       	push	r14
+     4ee:	ff 92       	push	r15
+     4f0:	0f 93       	push	r16
+     4f2:	1f 93       	push	r17
+     4f4:	cf 93       	push	r28
+     4f6:	df 93       	push	r29
+     4f8:	ec 01       	movw	r28, r24
+     4fa:	f4 2e       	mov	r15, r20
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     4fc:	df b6       	in	r13, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     4fe:	f8 94       	cli
+	{
+		if(numberOfString == 0)
+     500:	61 11       	cpse	r22, r1
+     502:	31 c0       	rjmp	.+98     	; 0x566 <_ZN7Display9setCursorEhh+0x7c>
+		{
+			//Установить курсор в нулевую позицию 0-й строки
+			command(0,0,0,0,1);
+     504:	ee 24       	eor	r14, r14
+     506:	e3 94       	inc	r14
+     508:	00 e0       	ldi	r16, 0x00	; 0
+     50a:	20 e0       	ldi	r18, 0x00	; 0
+     50c:	40 e0       	ldi	r20, 0x00	; 0
+     50e:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+			command(0,0,0,0,0);
+     512:	e1 2c       	mov	r14, r1
+     514:	20 e0       	ldi	r18, 0x00	; 0
+     516:	40 e0       	ldi	r20, 0x00	; 0
+     518:	60 e0       	ldi	r22, 0x00	; 0
+     51a:	ce 01       	movw	r24, r28
+     51c:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     520:	8f e7       	ldi	r24, 0x7F	; 127
+     522:	9e e3       	ldi	r25, 0x3E	; 62
+     524:	01 97       	sbiw	r24, 0x01	; 1
+     526:	f1 f7       	brne	.-4      	; 0x524 <_ZN7Display9setCursorEhh+0x3a>
+     528:	00 c0       	rjmp	.+0      	; 0x52a <_ZN7Display9setCursorEhh+0x40>
+     52a:	00 00       	nop
+			_delay_us(mks_after_com);
+			
+			//Установить курсор в указанную позиию
+			for(uint8_t i = 0; i < position; i++)
+     52c:	ff 20       	and	r15, r15
+     52e:	09 f4       	brne	.+2      	; 0x532 <_ZN7Display9setCursorEhh+0x48>
+     530:	4b c0       	rjmp	.+150    	; 0x5c8 <_ZN7Display9setCursorEhh+0xde>
+     532:	10 e0       	ldi	r17, 0x00	; 0
+			{
+				command(0,1,0,0,0);
+     534:	e1 2c       	mov	r14, r1
+     536:	00 e0       	ldi	r16, 0x00	; 0
+     538:	20 e0       	ldi	r18, 0x00	; 0
+     53a:	41 e0       	ldi	r20, 0x01	; 1
+     53c:	60 e0       	ldi	r22, 0x00	; 0
+     53e:	ce 01       	movw	r24, r28
+     540:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+				command(0,0,0,1,0);
+     544:	01 e0       	ldi	r16, 0x01	; 1
+     546:	20 e0       	ldi	r18, 0x00	; 0
+     548:	40 e0       	ldi	r20, 0x00	; 0
+     54a:	60 e0       	ldi	r22, 0x00	; 0
+     54c:	ce 01       	movw	r24, r28
+     54e:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     552:	8f e7       	ldi	r24, 0x7F	; 127
+     554:	9e e3       	ldi	r25, 0x3E	; 62
+     556:	01 97       	sbiw	r24, 0x01	; 1
+     558:	f1 f7       	brne	.-4      	; 0x556 <_ZN7Display9setCursorEhh+0x6c>
+     55a:	00 c0       	rjmp	.+0      	; 0x55c <_ZN7Display9setCursorEhh+0x72>
+     55c:	00 00       	nop
+			command(0,0,0,0,1);
+			command(0,0,0,0,0);
+			_delay_us(mks_after_com);
+			
+			//Установить курсор в указанную позиию
+			for(uint8_t i = 0; i < position; i++)
+     55e:	1f 5f       	subi	r17, 0xFF	; 255
+     560:	1f 11       	cpse	r17, r15
+     562:	e8 cf       	rjmp	.-48     	; 0x534 <_ZN7Display9setCursorEhh+0x4a>
+     564:	31 c0       	rjmp	.+98     	; 0x5c8 <_ZN7Display9setCursorEhh+0xde>
+				command(0,0,0,1,0);
+				_delay_us(mks_after_com);
+			}
+		}
+		
+		else if(numberOfString == 1)
+     566:	61 30       	cpi	r22, 0x01	; 1
+     568:	79 f5       	brne	.+94     	; 0x5c8 <_ZN7Display9setCursorEhh+0xde>
+		{
+			//Установить курсор в нулевую позицию 1-й строки
+			command(0,0,1,0,1);
+     56a:	ee 24       	eor	r14, r14
+     56c:	e3 94       	inc	r14
+     56e:	00 e0       	ldi	r16, 0x00	; 0
+     570:	21 e0       	ldi	r18, 0x01	; 1
+     572:	40 e0       	ldi	r20, 0x00	; 0
+     574:	60 e0       	ldi	r22, 0x00	; 0
+     576:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+			command(0,0,0,0,1);
+     57a:	20 e0       	ldi	r18, 0x00	; 0
+     57c:	40 e0       	ldi	r20, 0x00	; 0
+     57e:	60 e0       	ldi	r22, 0x00	; 0
+     580:	ce 01       	movw	r24, r28
+     582:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     586:	8f e7       	ldi	r24, 0x7F	; 127
+     588:	9e e3       	ldi	r25, 0x3E	; 62
+     58a:	01 97       	sbiw	r24, 0x01	; 1
+     58c:	f1 f7       	brne	.-4      	; 0x58a <_ZN7Display9setCursorEhh+0xa0>
+     58e:	00 c0       	rjmp	.+0      	; 0x590 <_ZN7Display9setCursorEhh+0xa6>
+     590:	00 00       	nop
+			_delay_us(mks_after_com);
+			
+			//Установить курсор в указанную позиию
+			for(uint8_t i = 0; i < position; i++)
+     592:	ff 20       	and	r15, r15
+     594:	c9 f0       	breq	.+50     	; 0x5c8 <_ZN7Display9setCursorEhh+0xde>
+     596:	10 e0       	ldi	r17, 0x00	; 0
+			{
+				command(0,1,0,0,0);
+     598:	e1 2c       	mov	r14, r1
+     59a:	00 e0       	ldi	r16, 0x00	; 0
+     59c:	20 e0       	ldi	r18, 0x00	; 0
+     59e:	41 e0       	ldi	r20, 0x01	; 1
+     5a0:	60 e0       	ldi	r22, 0x00	; 0
+     5a2:	ce 01       	movw	r24, r28
+     5a4:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+				command(0,1,1,1,0);
+     5a8:	01 e0       	ldi	r16, 0x01	; 1
+     5aa:	21 e0       	ldi	r18, 0x01	; 1
+     5ac:	41 e0       	ldi	r20, 0x01	; 1
+     5ae:	60 e0       	ldi	r22, 0x00	; 0
+     5b0:	ce 01       	movw	r24, r28
+     5b2:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     5b6:	8f e7       	ldi	r24, 0x7F	; 127
+     5b8:	9e e3       	ldi	r25, 0x3E	; 62
+     5ba:	01 97       	sbiw	r24, 0x01	; 1
+     5bc:	f1 f7       	brne	.-4      	; 0x5ba <_ZN7Display9setCursorEhh+0xd0>
+     5be:	00 c0       	rjmp	.+0      	; 0x5c0 <_ZN7Display9setCursorEhh+0xd6>
+     5c0:	00 00       	nop
+			command(0,0,1,0,1);
+			command(0,0,0,0,1);
+			_delay_us(mks_after_com);
+			
+			//Установить курсор в указанную позиию
+			for(uint8_t i = 0; i < position; i++)
+     5c2:	1f 5f       	subi	r17, 0xFF	; 255
+     5c4:	1f 11       	cpse	r17, r15
+     5c6:	e8 cf       	rjmp	.-48     	; 0x598 <_ZN7Display9setCursorEhh+0xae>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     5c8:	df be       	out	0x3f, r13	; 63
+				command(0,1,1,1,0);
+				_delay_us(mks_after_com);
+			}
+		}
+	}
+}
+     5ca:	df 91       	pop	r29
+     5cc:	cf 91       	pop	r28
+     5ce:	1f 91       	pop	r17
+     5d0:	0f 91       	pop	r16
+     5d2:	ff 90       	pop	r15
+     5d4:	ef 90       	pop	r14
+     5d6:	df 90       	pop	r13
+     5d8:	08 95       	ret
+
+000005da <_ZN7Display8sendByteEh>:
+
+void Display::sendByte(uint8_t data)
+{
+     5da:	ef 92       	push	r14
+     5dc:	ff 92       	push	r15
+     5de:	0f 93       	push	r16
+     5e0:	1f 93       	push	r17
+     5e2:	cf 93       	push	r28
+     5e4:	df 93       	push	r29
+     5e6:	ec 01       	movw	r28, r24
+     5e8:	16 2f       	mov	r17, r22
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     5ea:	ff b6       	in	r15, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     5ec:	f8 94       	cli
+		uint8_t bit2 = (data & 0b00000100) >> 2;
+		uint8_t bit3 = (data & 0b00001000) >> 3;
+		uint8_t bit4 = (data & 0b00010000) >> 4;
+		uint8_t bit5 = (data & 0b00100000) >> 5;
+		uint8_t bit6 = (data & 0b01000000) >> 6;
+		uint8_t bit7 = (data & 0b10000000) >> 7;
+     5ee:	e6 2e       	mov	r14, r22
+     5f0:	ee 1c       	adc	r14, r14
+     5f2:	ee 24       	eor	r14, r14
+     5f4:	ee 1c       	adc	r14, r14
+		uint8_t bit1 = (data & 0b00000010) >> 1;
+		uint8_t bit2 = (data & 0b00000100) >> 2;
+		uint8_t bit3 = (data & 0b00001000) >> 3;
+		uint8_t bit4 = (data & 0b00010000) >> 4;
+		uint8_t bit5 = (data & 0b00100000) >> 5;
+		uint8_t bit6 = (data & 0b01000000) >> 6;
+     5f6:	66 fb       	bst	r22, 6
+     5f8:	00 27       	eor	r16, r16
+     5fa:	00 f9       	bld	r16, 0
+		uint8_t bit0 = (data & 0b00000001) >> 0;
+		uint8_t bit1 = (data & 0b00000010) >> 1;
+		uint8_t bit2 = (data & 0b00000100) >> 2;
+		uint8_t bit3 = (data & 0b00001000) >> 3;
+		uint8_t bit4 = (data & 0b00010000) >> 4;
+		uint8_t bit5 = (data & 0b00100000) >> 5;
+     5fc:	65 fb       	bst	r22, 5
+     5fe:	22 27       	eor	r18, r18
+     600:	20 f9       	bld	r18, 0
+	{
+		uint8_t bit0 = (data & 0b00000001) >> 0;
+		uint8_t bit1 = (data & 0b00000010) >> 1;
+		uint8_t bit2 = (data & 0b00000100) >> 2;
+		uint8_t bit3 = (data & 0b00001000) >> 3;
+		uint8_t bit4 = (data & 0b00010000) >> 4;
+     602:	64 fb       	bst	r22, 4
+     604:	44 27       	eor	r20, r20
+     606:	40 f9       	bld	r20, 0
+		uint8_t bit5 = (data & 0b00100000) >> 5;
+		uint8_t bit6 = (data & 0b01000000) >> 6;
+		uint8_t bit7 = (data & 0b10000000) >> 7;
+
+		command(1, bit4, bit5, bit6, bit7);
+     608:	61 e0       	ldi	r22, 0x01	; 1
+     60a:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		uint8_t bit0 = (data & 0b00000001) >> 0;
+		uint8_t bit1 = (data & 0b00000010) >> 1;
+		uint8_t bit2 = (data & 0b00000100) >> 2;
+		uint8_t bit3 = (data & 0b00001000) >> 3;
+     60e:	13 fb       	bst	r17, 3
+     610:	ee 24       	eor	r14, r14
+     612:	e0 f8       	bld	r14, 0
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		uint8_t bit0 = (data & 0b00000001) >> 0;
+		uint8_t bit1 = (data & 0b00000010) >> 1;
+		uint8_t bit2 = (data & 0b00000100) >> 2;
+     614:	12 fb       	bst	r17, 2
+     616:	00 27       	eor	r16, r16
+     618:	00 f9       	bld	r16, 0
+void Display::sendByte(uint8_t data)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		uint8_t bit0 = (data & 0b00000001) >> 0;
+		uint8_t bit1 = (data & 0b00000010) >> 1;
+     61a:	11 fb       	bst	r17, 1
+     61c:	22 27       	eor	r18, r18
+     61e:	20 f9       	bld	r18, 0
+
+void Display::sendByte(uint8_t data)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		uint8_t bit0 = (data & 0b00000001) >> 0;
+     620:	41 2f       	mov	r20, r17
+     622:	41 70       	andi	r20, 0x01	; 1
+		uint8_t bit5 = (data & 0b00100000) >> 5;
+		uint8_t bit6 = (data & 0b01000000) >> 6;
+		uint8_t bit7 = (data & 0b10000000) >> 7;
+
+		command(1, bit4, bit5, bit6, bit7);
+		command(1, bit0, bit1, bit2, bit3);
+     624:	61 e0       	ldi	r22, 0x01	; 1
+     626:	ce 01       	movw	r24, r28
+     628:	0e 94 83 01 	call	0x306	; 0x306 <_ZN7Display7commandEhhhhh>
+     62c:	8f e7       	ldi	r24, 0x7F	; 127
+     62e:	9e e3       	ldi	r25, 0x3E	; 62
+     630:	01 97       	sbiw	r24, 0x01	; 1
+     632:	f1 f7       	brne	.-4      	; 0x630 <_ZN7Display8sendByteEh+0x56>
+     634:	00 c0       	rjmp	.+0      	; 0x636 <_ZN7Display8sendByteEh+0x5c>
+     636:	00 00       	nop
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     638:	ff be       	out	0x3f, r15	; 63
+		_delay_us(mks_after_com);
+	}
+}
+     63a:	df 91       	pop	r29
+     63c:	cf 91       	pop	r28
+     63e:	1f 91       	pop	r17
+     640:	0f 91       	pop	r16
+     642:	ff 90       	pop	r15
+     644:	ef 90       	pop	r14
+     646:	08 95       	ret
+
+00000648 <_ZN7Display10sendStringEPc>:
+
+void Display::sendString(char *data)
+{
+     648:	ef 92       	push	r14
+     64a:	ff 92       	push	r15
+     64c:	0f 93       	push	r16
+     64e:	1f 93       	push	r17
+     650:	cf 93       	push	r28
+     652:	df 93       	push	r29
+     654:	8c 01       	movw	r16, r24
+     656:	eb 01       	movw	r28, r22
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     658:	ef b6       	in	r14, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     65a:	f8 94       	cli
+	{
+		for(uint8_t i = 0; data[i] != '\0'; i++)
+     65c:	68 81       	ld	r22, Y
+     65e:	66 23       	and	r22, r22
+     660:	59 f0       	breq	.+22     	; 0x678 <_ZN7Display10sendStringEPc+0x30>
+     662:	f1 2c       	mov	r15, r1
+		{
+			sendByte(*(data + i));
+     664:	c8 01       	movw	r24, r16
+     666:	0e 94 ed 02 	call	0x5da	; 0x5da <_ZN7Display8sendByteEh>
+
+void Display::sendString(char *data)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		for(uint8_t i = 0; data[i] != '\0'; i++)
+     66a:	f3 94       	inc	r15
+     66c:	fe 01       	movw	r30, r28
+     66e:	ef 0d       	add	r30, r15
+     670:	f1 1d       	adc	r31, r1
+     672:	60 81       	ld	r22, Z
+     674:	61 11       	cpse	r22, r1
+     676:	f6 cf       	rjmp	.-20     	; 0x664 <_ZN7Display10sendStringEPc+0x1c>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     678:	ef be       	out	0x3f, r14	; 63
+		{
+			sendByte(*(data + i));
+		}
+	}
+}
+     67a:	df 91       	pop	r29
+     67c:	cf 91       	pop	r28
+     67e:	1f 91       	pop	r17
+     680:	0f 91       	pop	r16
+     682:	ff 90       	pop	r15
+     684:	ef 90       	pop	r14
+     686:	08 95       	ret
+
+00000688 <_ZN7Display5ledOnEv>:
+
+void Display::ledOn(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     688:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     68a:	f8 94       	cli
+	{
+		PORTB &= ~(1 << 2);
+     68c:	2a 98       	cbi	0x05, 2	; 5
+		DDRB &= ~(1 << 2);
+     68e:	22 98       	cbi	0x04, 2	; 4
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     690:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     692:	08 95       	ret
+
+00000694 <_ZN7Display6ledOffEv>:
+	}
+}
+
+void Display::ledOff(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     694:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     696:	f8 94       	cli
+	{
+		PORTB &= ~(1 << 2);
+     698:	2a 98       	cbi	0x05, 2	; 5
+		DDRB |= (1 << 2);
+     69a:	22 9a       	sbi	0x04, 2	; 4
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     69c:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     69e:	08 95       	ret
+
+000006a0 <_ZN6KeypadC1Ev>:
+
+volatile uint8_t Keypad::voltage_ADC = 255;
+
+Keypad::Keypad()
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     6a0:	3f b7       	in	r19, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     6a2:	f8 94       	cli
+	{
+		voltage_ADC = 255;
+     6a4:	2f ef       	ldi	r18, 0xFF	; 255
+     6a6:	20 93 00 01 	sts	0x0100, r18
+		key = 255;
+     6aa:	fc 01       	movw	r30, r24
+     6ac:	20 83       	st	Z, r18
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     6ae:	3f bf       	out	0x3f, r19	; 63
+    __asm__ volatile ("" ::: "memory");
+     6b0:	08 95       	ret
+
+000006b2 <_ZN6Keypad8Init_ADCEv>:
+	}
+}
+
+void Keypad::Init_ADC(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     6b2:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     6b4:	f8 94       	cli
+	{
+		ADMUX = (0 << REFS1)|(1 << REFS0)|(1 << ADLAR)|(0 << MUX3)|(0 << MUX2)|(0 << MUX1)|(0 << MUX0);
+     6b6:	90 e6       	ldi	r25, 0x60	; 96
+     6b8:	90 93 7c 00 	sts	0x007C, r25
+		ADCSRA = (1 << ADEN)|(1 << ADSC)|(1<<ADIE)|(1 << ADPS2)|(1 << ADPS1)|(1 << ADPS0);
+     6bc:	9f ec       	ldi	r25, 0xCF	; 207
+     6be:	90 93 7a 00 	sts	0x007A, r25
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     6c2:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     6c4:	08 95       	ret
+
+000006c6 <_ZN6Keypad10deInit_ADCEv>:
+	}	
+}
+
+void Keypad::deInit_ADC(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     6c6:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     6c8:	f8 94       	cli
+	{
+		ADCSRA &= ~((1 << ADEN)|(1<<ADIE));
+     6ca:	ea e7       	ldi	r30, 0x7A	; 122
+     6cc:	f0 e0       	ldi	r31, 0x00	; 0
+     6ce:	90 81       	ld	r25, Z
+     6d0:	97 77       	andi	r25, 0x77	; 119
+     6d2:	90 83       	st	Z, r25
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     6d4:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     6d6:	08 95       	ret
+
+000006d8 <_ZN6Keypad13ADC_INTERRUPTEv>:
+	}
+}
+
+void Keypad::ADC_INTERRUPT(void)
+{
+	voltage_ADC = ADCH;
+     6d8:	80 91 79 00 	lds	r24, 0x0079
+     6dc:	80 93 00 01 	sts	0x0100, r24
+	ADCSRA |= (1 << ADSC);	
+     6e0:	ea e7       	ldi	r30, 0x7A	; 122
+     6e2:	f0 e0       	ldi	r31, 0x00	; 0
+     6e4:	80 81       	ld	r24, Z
+     6e6:	80 64       	ori	r24, 0x40	; 64
+     6e8:	80 83       	st	Z, r24
+     6ea:	08 95       	ret
+
+000006ec <_ZN6Keypad6getKeyEv>:
+}
+
+uint8_t Keypad::getKey(void)
+{
+     6ec:	1f 93       	push	r17
+     6ee:	cf 93       	push	r28
+     6f0:	df 93       	push	r29
+     6f2:	ec 01       	movw	r28, r24
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     6f4:	1f b7       	in	r17, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     6f6:	f8 94       	cli
+	{
+		if ((fabs(voltage_ADC - RIGHT)) <= 10) {key = RIGHT;}
+     6f8:	60 91 00 01 	lds	r22, 0x0100
+     6fc:	70 e0       	ldi	r23, 0x00	; 0
+     6fe:	80 e0       	ldi	r24, 0x00	; 0
+     700:	90 e0       	ldi	r25, 0x00	; 0
+     702:	0e 94 92 09 	call	0x1324	; 0x1324 <__floatsisf>
+     706:	20 e0       	ldi	r18, 0x00	; 0
+     708:	30 e0       	ldi	r19, 0x00	; 0
+     70a:	40 e2       	ldi	r20, 0x20	; 32
+     70c:	51 e4       	ldi	r21, 0x41	; 65
+     70e:	0e 94 8c 09 	call	0x1318	; 0x1318 <__cmpsf2>
+     712:	18 16       	cp	r1, r24
+     714:	14 f0       	brlt	.+4      	; 0x71a <_ZN6Keypad6getKeyEv+0x2e>
+     716:	18 82       	st	Y, r1
+     718:	5e c0       	rjmp	.+188    	; 0x7d6 <_ZN6Keypad6getKeyEv+0xea>
+		else if((fabs(voltage_ADC - UP)) <= 10) {key = UP;}
+     71a:	60 91 00 01 	lds	r22, 0x0100
+     71e:	70 e0       	ldi	r23, 0x00	; 0
+     720:	64 52       	subi	r22, 0x24	; 36
+     722:	71 09       	sbc	r23, r1
+     724:	88 27       	eor	r24, r24
+     726:	77 fd       	sbrc	r23, 7
+     728:	80 95       	com	r24
+     72a:	98 2f       	mov	r25, r24
+     72c:	0e 94 92 09 	call	0x1324	; 0x1324 <__floatsisf>
+     730:	9f 77       	andi	r25, 0x7F	; 127
+     732:	20 e0       	ldi	r18, 0x00	; 0
+     734:	30 e0       	ldi	r19, 0x00	; 0
+     736:	40 e2       	ldi	r20, 0x20	; 32
+     738:	51 e4       	ldi	r21, 0x41	; 65
+     73a:	0e 94 8c 09 	call	0x1318	; 0x1318 <__cmpsf2>
+     73e:	18 16       	cp	r1, r24
+     740:	1c f0       	brlt	.+6      	; 0x748 <_ZN6Keypad6getKeyEv+0x5c>
+     742:	84 e2       	ldi	r24, 0x24	; 36
+     744:	88 83       	st	Y, r24
+     746:	47 c0       	rjmp	.+142    	; 0x7d6 <_ZN6Keypad6getKeyEv+0xea>
+		else if((fabs(voltage_ADC - DOWN)) <= 10) {key = DOWN;}
+     748:	60 91 00 01 	lds	r22, 0x0100
+     74c:	70 e0       	ldi	r23, 0x00	; 0
+     74e:	62 55       	subi	r22, 0x52	; 82
+     750:	71 09       	sbc	r23, r1
+     752:	88 27       	eor	r24, r24
+     754:	77 fd       	sbrc	r23, 7
+     756:	80 95       	com	r24
+     758:	98 2f       	mov	r25, r24
+     75a:	0e 94 92 09 	call	0x1324	; 0x1324 <__floatsisf>
+     75e:	9f 77       	andi	r25, 0x7F	; 127
+     760:	20 e0       	ldi	r18, 0x00	; 0
+     762:	30 e0       	ldi	r19, 0x00	; 0
+     764:	40 e2       	ldi	r20, 0x20	; 32
+     766:	51 e4       	ldi	r21, 0x41	; 65
+     768:	0e 94 8c 09 	call	0x1318	; 0x1318 <__cmpsf2>
+     76c:	18 16       	cp	r1, r24
+     76e:	1c f0       	brlt	.+6      	; 0x776 <_ZN6Keypad6getKeyEv+0x8a>
+     770:	82 e5       	ldi	r24, 0x52	; 82
+     772:	88 83       	st	Y, r24
+     774:	30 c0       	rjmp	.+96     	; 0x7d6 <_ZN6Keypad6getKeyEv+0xea>
+		else if((fabs(voltage_ADC - LEFT)) <= 10) {key = LEFT;}
+     776:	60 91 00 01 	lds	r22, 0x0100
+     77a:	70 e0       	ldi	r23, 0x00	; 0
+     77c:	6e 57       	subi	r22, 0x7E	; 126
+     77e:	71 09       	sbc	r23, r1
+     780:	88 27       	eor	r24, r24
+     782:	77 fd       	sbrc	r23, 7
+     784:	80 95       	com	r24
+     786:	98 2f       	mov	r25, r24
+     788:	0e 94 92 09 	call	0x1324	; 0x1324 <__floatsisf>
+     78c:	9f 77       	andi	r25, 0x7F	; 127
+     78e:	20 e0       	ldi	r18, 0x00	; 0
+     790:	30 e0       	ldi	r19, 0x00	; 0
+     792:	40 e2       	ldi	r20, 0x20	; 32
+     794:	51 e4       	ldi	r21, 0x41	; 65
+     796:	0e 94 8c 09 	call	0x1318	; 0x1318 <__cmpsf2>
+     79a:	18 16       	cp	r1, r24
+     79c:	1c f0       	brlt	.+6      	; 0x7a4 <_ZN6Keypad6getKeyEv+0xb8>
+     79e:	8e e7       	ldi	r24, 0x7E	; 126
+     7a0:	88 83       	st	Y, r24
+     7a2:	19 c0       	rjmp	.+50     	; 0x7d6 <_ZN6Keypad6getKeyEv+0xea>
+		else if((fabs(voltage_ADC - SELECT)) <= 10) {key = SELECT;}
+     7a4:	60 91 00 01 	lds	r22, 0x0100
+     7a8:	70 e0       	ldi	r23, 0x00	; 0
+     7aa:	69 5b       	subi	r22, 0xB9	; 185
+     7ac:	71 09       	sbc	r23, r1
+     7ae:	88 27       	eor	r24, r24
+     7b0:	77 fd       	sbrc	r23, 7
+     7b2:	80 95       	com	r24
+     7b4:	98 2f       	mov	r25, r24
+     7b6:	0e 94 92 09 	call	0x1324	; 0x1324 <__floatsisf>
+     7ba:	9f 77       	andi	r25, 0x7F	; 127
+     7bc:	20 e0       	ldi	r18, 0x00	; 0
+     7be:	30 e0       	ldi	r19, 0x00	; 0
+     7c0:	40 e2       	ldi	r20, 0x20	; 32
+     7c2:	51 e4       	ldi	r21, 0x41	; 65
+     7c4:	0e 94 8c 09 	call	0x1318	; 0x1318 <__cmpsf2>
+     7c8:	18 16       	cp	r1, r24
+     7ca:	1c f0       	brlt	.+6      	; 0x7d2 <_ZN6Keypad6getKeyEv+0xe6>
+     7cc:	89 eb       	ldi	r24, 0xB9	; 185
+     7ce:	88 83       	st	Y, r24
+     7d0:	02 c0       	rjmp	.+4      	; 0x7d6 <_ZN6Keypad6getKeyEv+0xea>
+		else {key = NO;}
+     7d2:	8f ef       	ldi	r24, 0xFF	; 255
+     7d4:	88 83       	st	Y, r24
+		return key;
+     7d6:	88 81       	ld	r24, Y
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     7d8:	1f bf       	out	0x3f, r17	; 63
+	}
+}
+     7da:	df 91       	pop	r29
+     7dc:	cf 91       	pop	r28
+     7de:	1f 91       	pop	r17
+     7e0:	08 95       	ret
+
+000007e2 <_ZN5SoundC1Ev>:
+
+volatile uint8_t Sound::point;
+volatile uint16_t Sound::timer;
+volatile uint8_t Sound::counter;
+
+Sound::Sound()
+     7e2:	24 ea       	ldi	r18, 0xA4	; 164
+     7e4:	31 e0       	ldi	r19, 0x01	; 1
+     7e6:	fc 01       	movw	r30, r24
+     7e8:	31 83       	std	Z+1, r19	; 0x01
+     7ea:	20 83       	st	Z, r18
+{
+	point = 0;
+     7ec:	10 92 ed 01 	sts	0x01ED, r1
+	timer = 0;
+     7f0:	10 92 ec 01 	sts	0x01EC, r1
+     7f4:	10 92 eb 01 	sts	0x01EB, r1
+	counter = 0;
+     7f8:	10 92 ea 01 	sts	0x01EA, r1
+     7fc:	08 95       	ret
+
+000007fe <_ZN5Sound7soundOnEv>:
+}
+
+void Sound::soundOn(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     7fe:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     800:	f8 94       	cli
+	{
+		DDRD |= (1 << 3);
+     802:	53 9a       	sbi	0x0a, 3	; 10
+		TCCR2A |= (1 << COM2B1)|(1 << WGM21)|(1 << WGM20);
+     804:	e0 eb       	ldi	r30, 0xB0	; 176
+     806:	f0 e0       	ldi	r31, 0x00	; 0
+     808:	90 81       	ld	r25, Z
+     80a:	93 62       	ori	r25, 0x23	; 35
+     80c:	90 83       	st	Z, r25
+		TCCR2B |= (1 << WGM22)|(1 << CS22)|(1 << CS21);
+     80e:	e1 eb       	ldi	r30, 0xB1	; 177
+     810:	f0 e0       	ldi	r31, 0x00	; 0
+     812:	90 81       	ld	r25, Z
+     814:	9e 60       	ori	r25, 0x0E	; 14
+     816:	90 83       	st	Z, r25
+		TCCR1B |= (1 << CS10);
+     818:	e1 e8       	ldi	r30, 0x81	; 129
+     81a:	f0 e0       	ldi	r31, 0x00	; 0
+     81c:	90 81       	ld	r25, Z
+     81e:	91 60       	ori	r25, 0x01	; 1
+     820:	90 83       	st	Z, r25
+		TIMSK1 |= (1 << TOIE1);
+     822:	ef e6       	ldi	r30, 0x6F	; 111
+     824:	f0 e0       	ldi	r31, 0x00	; 0
+     826:	90 81       	ld	r25, Z
+     828:	91 60       	ori	r25, 0x01	; 1
+     82a:	90 83       	st	Z, r25
+		point = 0;
+     82c:	10 92 ed 01 	sts	0x01ED, r1
+		timer = 0;
+     830:	10 92 ec 01 	sts	0x01EC, r1
+     834:	10 92 eb 01 	sts	0x01EB, r1
+		counter = 0;
+     838:	10 92 ea 01 	sts	0x01EA, r1
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     83c:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     83e:	08 95       	ret
+
+00000840 <_ZN5Sound8soundOffEv>:
+	}
+}
+
+void Sound::soundOff(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     840:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     842:	f8 94       	cli
+	{
+		DDRD &= ~(1 << 3);
+     844:	53 98       	cbi	0x0a, 3	; 10
+		TCCR2A &= ~((1 << COM2A1)|(1 << WGM21)|(1 << WGM20));
+     846:	e0 eb       	ldi	r30, 0xB0	; 176
+     848:	f0 e0       	ldi	r31, 0x00	; 0
+     84a:	90 81       	ld	r25, Z
+     84c:	9c 77       	andi	r25, 0x7C	; 124
+     84e:	90 83       	st	Z, r25
+		TCCR2B &= ~((1 << WGM22)|(1 << CS22)|(1 << CS21));
+     850:	e1 eb       	ldi	r30, 0xB1	; 177
+     852:	f0 e0       	ldi	r31, 0x00	; 0
+     854:	90 81       	ld	r25, Z
+     856:	91 7f       	andi	r25, 0xF1	; 241
+     858:	90 83       	st	Z, r25
+		TCCR1B &= ~(1 << CS10);
+     85a:	e1 e8       	ldi	r30, 0x81	; 129
+     85c:	f0 e0       	ldi	r31, 0x00	; 0
+     85e:	90 81       	ld	r25, Z
+     860:	9e 7f       	andi	r25, 0xFE	; 254
+     862:	90 83       	st	Z, r25
+		TIMSK1 &= ~(1 << TOIE1);
+     864:	ef e6       	ldi	r30, 0x6F	; 111
+     866:	f0 e0       	ldi	r31, 0x00	; 0
+     868:	90 81       	ld	r25, Z
+     86a:	9e 7f       	andi	r25, 0xFE	; 254
+     86c:	90 83       	st	Z, r25
+		OCR2A = 0;
+     86e:	10 92 b3 00 	sts	0x00B3, r1
+		OCR2B = 0;
+     872:	10 92 b4 00 	sts	0x00B4, r1
+		point = 0;
+     876:	10 92 ed 01 	sts	0x01ED, r1
+		timer = 0;
+     87a:	10 92 ec 01 	sts	0x01EC, r1
+     87e:	10 92 eb 01 	sts	0x01EB, r1
+		counter = 0;
+     882:	10 92 ea 01 	sts	0x01EA, r1
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     886:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     888:	08 95       	ret
+
+0000088a <_ZN7ButtonsC1Ev>:
+
+bool Buttons::pressedButton = false;
+
+Buttons::Buttons()
+{
+	pressedButton = false;
+     88a:	10 92 e9 01 	sts	0x01E9, r1
+     88e:	08 95       	ret
+
+00000890 <_ZN7Buttons9initPortsEv>:
+}
+
+void Buttons::initPorts()
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     890:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     892:	f8 94       	cli
+	{
+		BUTTONS_PORT |= (1 << BUTTON_IN_1)|(1 << BUTTON_IN_2)|(1 << BUTTON_IN_3)|(1 << BUTTON_IN_4)|(1 << BUTTON_IN_5);
+     894:	98 b1       	in	r25, 0x08	; 8
+     896:	9e 63       	ori	r25, 0x3E	; 62
+     898:	98 b9       	out	0x08, r25	; 8
+		BUTTONS_DDR &= ~((1 << BUTTON_IN_1)|(1 << BUTTON_IN_2)|(1 << BUTTON_IN_3)|(1 << BUTTON_IN_4)|(1 << BUTTON_IN_5));
+     89a:	97 b1       	in	r25, 0x07	; 7
+     89c:	91 7c       	andi	r25, 0xC1	; 193
+     89e:	97 b9       	out	0x07, r25	; 7
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     8a0:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     8a2:	08 95       	ret
+
+000008a4 <_ZN7Buttons11init_Timer0Ev>:
+	}
+}
+
+void Buttons::init_Timer0(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     8a4:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     8a6:	f8 94       	cli
+	{
+		TCCR0B |= (1 << CS02)|(0 << CS01)|(1 << CS00);
+     8a8:	95 b5       	in	r25, 0x25	; 37
+     8aa:	95 60       	ori	r25, 0x05	; 5
+     8ac:	95 bd       	out	0x25, r25	; 37
+		TIMSK0 |= (1 << TOIE0);
+     8ae:	ee e6       	ldi	r30, 0x6E	; 110
+     8b0:	f0 e0       	ldi	r31, 0x00	; 0
+     8b2:	90 81       	ld	r25, Z
+     8b4:	91 60       	ori	r25, 0x01	; 1
+     8b6:	90 83       	st	Z, r25
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     8b8:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     8ba:	08 95       	ret
+
+000008bc <_ZN7Buttons13deInit_Timer0Ev>:
+	}
+}
+
+void Buttons::deInit_Timer0(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     8bc:	8f b7       	in	r24, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     8be:	f8 94       	cli
+	{
+		TIMSK0 &= ~(1 << TOIE0);
+     8c0:	ee e6       	ldi	r30, 0x6E	; 110
+     8c2:	f0 e0       	ldi	r31, 0x00	; 0
+     8c4:	90 81       	ld	r25, Z
+     8c6:	9e 7f       	andi	r25, 0xFE	; 254
+     8c8:	90 83       	st	Z, r25
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     8ca:	8f bf       	out	0x3f, r24	; 63
+    __asm__ volatile ("" ::: "memory");
+     8cc:	08 95       	ret
+
+000008ce <_ZN7Buttons21pressedButtonAnalysisEPh>:
+	}
+}
+
+void Buttons::pressedButtonAnalysis(uint8_t *buttons)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     8ce:	4f b7       	in	r20, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     8d0:	f8 94       	cli
+     8d2:	e8 2f       	mov	r30, r24
+     8d4:	f9 2f       	mov	r31, r25
+     8d6:	80 e0       	ldi	r24, 0x00	; 0
+     8d8:	90 e0       	ldi	r25, 0x00	; 0
+	{
+		for(uint8_t i = 0; i < 5; i++)
+		{
+			if((*(buttons + i) == 1) && ((BUTTONS_PIN & (1 << (i + 1))) == 0))
+			{
+				pressedButton = true;
+     8da:	51 e0       	ldi	r21, 0x01	; 1
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		for(uint8_t i = 0; i < 5; i++)
+		{
+			if((*(buttons + i) == 1) && ((BUTTONS_PIN & (1 << (i + 1))) == 0))
+     8dc:	21 91       	ld	r18, Z+
+     8de:	01 96       	adiw	r24, 0x01	; 1
+     8e0:	21 30       	cpi	r18, 0x01	; 1
+     8e2:	51 f4       	brne	.+20     	; 0x8f8 <_ZN7Buttons21pressedButtonAnalysisEPh+0x2a>
+     8e4:	26 b1       	in	r18, 0x06	; 6
+     8e6:	30 e0       	ldi	r19, 0x00	; 0
+     8e8:	08 2e       	mov	r0, r24
+     8ea:	02 c0       	rjmp	.+4      	; 0x8f0 <_ZN7Buttons21pressedButtonAnalysisEPh+0x22>
+     8ec:	35 95       	asr	r19
+     8ee:	27 95       	ror	r18
+     8f0:	0a 94       	dec	r0
+     8f2:	e2 f7       	brpl	.-8      	; 0x8ec <_ZN7Buttons21pressedButtonAnalysisEPh+0x1e>
+     8f4:	20 ff       	sbrs	r18, 0
+     8f6:	05 c0       	rjmp	.+10     	; 0x902 <__stack+0x3>
+
+void Buttons::pressedButtonAnalysis(uint8_t *buttons)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+	{
+		for(uint8_t i = 0; i < 5; i++)
+     8f8:	85 30       	cpi	r24, 0x05	; 5
+     8fa:	91 05       	cpc	r25, r1
+     8fc:	79 f7       	brne	.-34     	; 0x8dc <_ZN7Buttons21pressedButtonAnalysisEPh+0xe>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     8fe:	4f bf       	out	0x3f, r20	; 63
+    __asm__ volatile ("" ::: "memory");
+     900:	08 95       	ret
+		{
+			if((*(buttons + i) == 1) && ((BUTTONS_PIN & (1 << (i + 1))) == 0))
+			{
+				pressedButton = true;
+     902:	50 93 e9 01 	sts	0x01E9, r21
+     906:	f8 cf       	rjmp	.-16     	; 0x8f8 <_ZN7Buttons21pressedButtonAnalysisEPh+0x2a>
+
+00000908 <_ZN7Buttons16getPressedButtonEv>:
+	}
+}
+
+bool Buttons::getPressedButton(void)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+     908:	9f b7       	in	r25, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+     90a:	f8 94       	cli
+	{
+		return pressedButton;
+     90c:	80 91 e9 01 	lds	r24, 0x01E9
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+     910:	9f bf       	out	0x3f, r25	; 63
+	}
+}
+     912:	08 95       	ret
+
+00000914 <_ZN4Uart8readByteEv>:
+}
+
+
+void Uart::readByte(void)
+{
+	currentByte = UDR0; //Считывание Uart
+     914:	80 91 c6 00 	lds	r24, 0x00C6
+     918:	80 93 d3 01 	sts	0x01D3, r24
+	
+	//Признак начала посылки
+	if(currentByte == '<')
+     91c:	80 91 d3 01 	lds	r24, 0x01D3
+     920:	8c 33       	cpi	r24, 0x3C	; 60
+     922:	61 f4       	brne	.+24     	; 0x93c <_ZN4Uart8readByteEv+0x28>
+	{
+		counterRxBuff = 0;
+     924:	10 92 d4 01 	sts	0x01D4, r1
+     928:	81 e0       	ldi	r24, 0x01	; 1
+     92a:	90 e0       	ldi	r25, 0x00	; 0
+		for(uint8_t i = 1; i < BUFF_LENGTH; i++)
+		{
+			rxBuff[i] = 0;
+     92c:	fc 01       	movw	r30, r24
+     92e:	eb 52       	subi	r30, 0x2B	; 43
+     930:	fe 4f       	sbci	r31, 0xFE	; 254
+     932:	10 82       	st	Z, r1
+     934:	01 96       	adiw	r24, 0x01	; 1
+	
+	//Признак начала посылки
+	if(currentByte == '<')
+	{
+		counterRxBuff = 0;
+		for(uint8_t i = 1; i < BUFF_LENGTH; i++)
+     936:	84 31       	cpi	r24, 0x14	; 20
+     938:	91 05       	cpc	r25, r1
+     93a:	c1 f7       	brne	.-16     	; 0x92c <_ZN4Uart8readByteEv+0x18>
+			rxBuff[i] = 0;
+		}
+	}
+	
+	//Заполнение буфера
+	if(counterRxBuff < BUFF_LENGTH)
+     93c:	80 91 d4 01 	lds	r24, 0x01D4
+     940:	84 31       	cpi	r24, 0x14	; 20
+     942:	70 f4       	brcc	.+28     	; 0x960 <_ZN4Uart8readByteEv+0x4c>
+	{
+		rxBuff[counterRxBuff] = currentByte;
+     944:	e0 91 d4 01 	lds	r30, 0x01D4
+     948:	f0 e0       	ldi	r31, 0x00	; 0
+     94a:	80 91 d3 01 	lds	r24, 0x01D3
+     94e:	eb 52       	subi	r30, 0x2B	; 43
+     950:	fe 4f       	sbci	r31, 0xFE	; 254
+     952:	80 83       	st	Z, r24
+		counterRxBuff++;
+     954:	80 91 d4 01 	lds	r24, 0x01D4
+     958:	8f 5f       	subi	r24, 0xFF	; 255
+     95a:	80 93 d4 01 	sts	0x01D4, r24
+     95e:	0c c0       	rjmp	.+24     	; 0x978 <_ZN4Uart8readByteEv+0x64>
+			rxBuff[i] = 0;
+		}
+	}
+	
+	//Заполнение буфера
+	if(counterRxBuff < BUFF_LENGTH)
+     960:	80 e0       	ldi	r24, 0x00	; 0
+     962:	90 e0       	ldi	r25, 0x00	; 0
+	//Очистка буфера при переполнении
+	else
+	{
+		for(uint8_t i = 0; i < BUFF_LENGTH; i++)
+		{
+			rxBuff[i] = 0;
+     964:	fc 01       	movw	r30, r24
+     966:	eb 52       	subi	r30, 0x2B	; 43
+     968:	fe 4f       	sbci	r31, 0xFE	; 254
+     96a:	10 82       	st	Z, r1
+     96c:	01 96       	adiw	r24, 0x01	; 1
+	}
+	
+	//Очистка буфера при переполнении
+	else
+	{
+		for(uint8_t i = 0; i < BUFF_LENGTH; i++)
+     96e:	84 31       	cpi	r24, 0x14	; 20
+     970:	91 05       	cpc	r25, r1
+     972:	c1 f7       	brne	.-16     	; 0x964 <_ZN4Uart8readByteEv+0x50>
+		{
+			rxBuff[i] = 0;
+		}
+		counterRxBuff = 0;
+     974:	10 92 d4 01 	sts	0x01D4, r1
+	}
+	
+	if	   ((rxBuff[0] == '<') &&
+     978:	80 91 d5 01 	lds	r24, 0x01D5
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'Y') &&
+     97c:	8c 33       	cpi	r24, 0x3C	; 60
+     97e:	d1 f5       	brne	.+116    	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+		}
+		counterRxBuff = 0;
+	}
+	
+	if	   ((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+     980:	80 91 d6 01 	lds	r24, 0x01D6
+			rxBuff[i] = 0;
+		}
+		counterRxBuff = 0;
+	}
+	
+	if	   ((rxBuff[0] == '<') &&
+     984:	80 37       	cpi	r24, 0x70	; 112
+     986:	b1 f5       	brne	.+108    	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+     988:	80 91 d7 01 	lds	r24, 0x01D7
+		}
+		counterRxBuff = 0;
+	}
+	
+	if	   ((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+     98c:	82 37       	cpi	r24, 0x72	; 114
+     98e:	91 f5       	brne	.+100    	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+     990:	80 91 d8 01 	lds	r24, 0x01D8
+		counterRxBuff = 0;
+	}
+	
+	if	   ((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+     994:	8f 36       	cpi	r24, 0x6F	; 111
+     996:	71 f5       	brne	.+92     	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+     998:	80 91 d9 01 	lds	r24, 0x01D9
+	}
+	
+	if	   ((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+     99c:	87 36       	cpi	r24, 0x67	; 103
+     99e:	51 f5       	brne	.+84     	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+     9a0:	80 91 da 01 	lds	r24, 0x01DA
+	
+	if	   ((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+     9a4:	82 37       	cpi	r24, 0x72	; 114
+     9a6:	31 f5       	brne	.+76     	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'Y') &&
+     9a8:	80 91 db 01 	lds	r24, 0x01DB
+	if	   ((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+     9ac:	89 35       	cpi	r24, 0x59	; 89
+     9ae:	11 f5       	brne	.+68     	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+			(rxBuff[6] == 'Y') &&
+			(rxBuff[7] == '>'))
+     9b0:	80 91 dc 01 	lds	r24, 0x01DC
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'Y') &&
+     9b4:	8e 33       	cpi	r24, 0x3E	; 62
+     9b6:	f1 f4       	brne	.+60     	; 0x9f4 <_ZN4Uart8readByteEv+0xe0>
+     9b8:	22 c0       	rjmp	.+68     	; 0x9fe <_ZN4Uart8readByteEv+0xea>
+			{
+				programmingMode = true;
+			}
+	
+	else if((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+     9ba:	80 91 d6 01 	lds	r24, 0x01D6
+			(rxBuff[7] == '>'))
+			{
+				programmingMode = true;
+			}
+	
+	else if((rxBuff[0] == '<') &&
+     9be:	80 37       	cpi	r24, 0x70	; 112
+     9c0:	21 f5       	brne	.+72     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+     9c2:	80 91 d7 01 	lds	r24, 0x01D7
+			{
+				programmingMode = true;
+			}
+	
+	else if((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+     9c6:	82 37       	cpi	r24, 0x72	; 114
+     9c8:	01 f5       	brne	.+64     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+     9ca:	80 91 d8 01 	lds	r24, 0x01D8
+				programmingMode = true;
+			}
+	
+	else if((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+     9ce:	8f 36       	cpi	r24, 0x6F	; 111
+     9d0:	e1 f4       	brne	.+56     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+     9d2:	80 91 d9 01 	lds	r24, 0x01D9
+			}
+	
+	else if((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+     9d6:	87 36       	cpi	r24, 0x67	; 103
+     9d8:	c1 f4       	brne	.+48     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+     9da:	80 91 da 01 	lds	r24, 0x01DA
+	
+	else if((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+     9de:	82 37       	cpi	r24, 0x72	; 114
+     9e0:	a1 f4       	brne	.+40     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'N') &&
+     9e2:	80 91 db 01 	lds	r24, 0x01DB
+	else if((rxBuff[0] == '<') &&
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+     9e6:	8e 34       	cpi	r24, 0x4E	; 78
+     9e8:	81 f4       	brne	.+32     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+			(rxBuff[6] == 'N') &&
+			(rxBuff[7] == '>'))
+     9ea:	80 91 dc 01 	lds	r24, 0x01DC
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'N') &&
+     9ee:	8e 33       	cpi	r24, 0x3E	; 62
+     9f0:	61 f4       	brne	.+24     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+     9f2:	09 c0       	rjmp	.+18     	; 0xa06 <_ZN4Uart8readByteEv+0xf2>
+			(rxBuff[7] == '>'))
+			{
+				programmingMode = true;
+			}
+	
+	else if((rxBuff[0] == '<') &&
+     9f4:	80 91 d5 01 	lds	r24, 0x01D5
+			(rxBuff[1] == 'p') &&
+			(rxBuff[2] == 'r') &&
+			(rxBuff[3] == 'o') &&
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'N') &&
+     9f8:	8c 33       	cpi	r24, 0x3C	; 60
+     9fa:	39 f4       	brne	.+14     	; 0xa0a <_ZN4Uart8readByteEv+0xf6>
+     9fc:	de cf       	rjmp	.-68     	; 0x9ba <_ZN4Uart8readByteEv+0xa6>
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'Y') &&
+			(rxBuff[7] == '>'))
+			{
+				programmingMode = true;
+     9fe:	81 e0       	ldi	r24, 0x01	; 1
+     a00:	80 93 d2 01 	sts	0x01D2, r24
+     a04:	08 95       	ret
+			(rxBuff[4] == 'g') &&
+			(rxBuff[5] == 'r') &&
+			(rxBuff[6] == 'N') &&
+			(rxBuff[7] == '>'))
+			{
+				programmingMode = false;
+     a06:	10 92 d2 01 	sts	0x01D2, r1
+     a0a:	08 95       	ret
+
+00000a0c <_ZN4Uart13readRxCommandEv>:
+			}
+}
+
+uint8_t Uart::readRxCommand(void)
+{			
+	if((rxBuff[0] == '<') && (rxBuff[1] == '0') && (rxBuff[2] == '0') && (rxBuff[3] == '0') && (rxBuff[4] == '>'))
+     a0c:	20 91 d5 01 	lds	r18, 0x01D5
+     a10:	2c 33       	cpi	r18, 0x3C	; 60
+     a12:	41 f5       	brne	.+80     	; 0xa64 <_ZN4Uart13readRxCommandEv+0x58>
+     a14:	20 91 d6 01 	lds	r18, 0x01D6
+     a18:	20 33       	cpi	r18, 0x30	; 48
+     a1a:	21 f5       	brne	.+72     	; 0xa64 <_ZN4Uart13readRxCommandEv+0x58>
+     a1c:	20 91 d7 01 	lds	r18, 0x01D7
+     a20:	20 33       	cpi	r18, 0x30	; 48
+     a22:	01 f5       	brne	.+64     	; 0xa64 <_ZN4Uart13readRxCommandEv+0x58>
+     a24:	20 91 d8 01 	lds	r18, 0x01D8
+     a28:	20 33       	cpi	r18, 0x30	; 48
+     a2a:	e1 f4       	brne	.+56     	; 0xa64 <_ZN4Uart13readRxCommandEv+0x58>
+     a2c:	20 91 d9 01 	lds	r18, 0x01D9
+     a30:	2e 33       	cpi	r18, 0x3E	; 62
+     a32:	c1 f4       	brne	.+48     	; 0xa64 <_ZN4Uart13readRxCommandEv+0x58>
+     a34:	14 c0       	rjmp	.+40     	; 0xa5e <_ZN4Uart13readRxCommandEv+0x52>
+	{
+		uartCommand = COM_NO;
+	}
+		
+	else if((rxBuff[0] == '<') && (rxBuff[1] == '1') && (rxBuff[7] == '>'))
+     a36:	20 91 d6 01 	lds	r18, 0x01D6
+     a3a:	21 33       	cpi	r18, 0x31	; 49
+     a3c:	e1 f4       	brne	.+56     	; 0xa76 <_ZN4Uart13readRxCommandEv+0x6a>
+     a3e:	20 91 dc 01 	lds	r18, 0x01DC
+     a42:	2e 33       	cpi	r18, 0x3E	; 62
+     a44:	c1 f4       	brne	.+48     	; 0xa76 <_ZN4Uart13readRxCommandEv+0x6a>
+     a46:	13 c0       	rjmp	.+38     	; 0xa6e <_ZN4Uart13readRxCommandEv+0x62>
+	{
+		uartCommand = COM_SET_BUTTONS;
+	}	
+			
+	else if((rxBuff[0] == '<') && (rxBuff[1] == '2') && (rxBuff[3] == '>'))
+     a48:	20 91 d6 01 	lds	r18, 0x01D6
+     a4c:	22 33       	cpi	r18, 0x32	; 50
+     a4e:	21 f4       	brne	.+8      	; 0xa58 <_ZN4Uart13readRxCommandEv+0x4c>
+     a50:	20 91 d8 01 	lds	r18, 0x01D8
+     a54:	2e 33       	cpi	r18, 0x3E	; 62
+     a56:	a1 f0       	breq	.+40     	; 0xa80 <_ZN4Uart13readRxCommandEv+0x74>
+	{
+		uartCommand = COM_SET_SOUND;
+	}
+	
+	return uartCommand;	
+     a58:	fc 01       	movw	r30, r24
+     a5a:	80 81       	ld	r24, Z
+     a5c:	08 95       	ret
+
+uint8_t Uart::readRxCommand(void)
+{			
+	if((rxBuff[0] == '<') && (rxBuff[1] == '0') && (rxBuff[2] == '0') && (rxBuff[3] == '0') && (rxBuff[4] == '>'))
+	{
+		uartCommand = COM_NO;
+     a5e:	fc 01       	movw	r30, r24
+     a60:	10 82       	st	Z, r1
+     a62:	fa cf       	rjmp	.-12     	; 0xa58 <_ZN4Uart13readRxCommandEv+0x4c>
+	}
+		
+	else if((rxBuff[0] == '<') && (rxBuff[1] == '1') && (rxBuff[7] == '>'))
+     a64:	20 91 d5 01 	lds	r18, 0x01D5
+     a68:	2c 33       	cpi	r18, 0x3C	; 60
+     a6a:	29 f4       	brne	.+10     	; 0xa76 <_ZN4Uart13readRxCommandEv+0x6a>
+     a6c:	e4 cf       	rjmp	.-56     	; 0xa36 <_ZN4Uart13readRxCommandEv+0x2a>
+	{
+		uartCommand = COM_SET_BUTTONS;
+     a6e:	21 e0       	ldi	r18, 0x01	; 1
+     a70:	fc 01       	movw	r30, r24
+     a72:	20 83       	st	Z, r18
+     a74:	f1 cf       	rjmp	.-30     	; 0xa58 <_ZN4Uart13readRxCommandEv+0x4c>
+	}	
+			
+	else if((rxBuff[0] == '<') && (rxBuff[1] == '2') && (rxBuff[3] == '>'))
+     a76:	20 91 d5 01 	lds	r18, 0x01D5
+     a7a:	2c 33       	cpi	r18, 0x3C	; 60
+     a7c:	69 f7       	brne	.-38     	; 0xa58 <_ZN4Uart13readRxCommandEv+0x4c>
+     a7e:	e4 cf       	rjmp	.-56     	; 0xa48 <_ZN4Uart13readRxCommandEv+0x3c>
+	{
+		uartCommand = COM_SET_SOUND;
+     a80:	22 e0       	ldi	r18, 0x02	; 2
+     a82:	fc 01       	movw	r30, r24
+     a84:	20 83       	st	Z, r18
+     a86:	e8 cf       	rjmp	.-48     	; 0xa58 <_ZN4Uart13readRxCommandEv+0x4c>
+
+00000a88 <_ZN4Uart10sendTxBuffEPch>:
+{
+	return (rxBuff + 2);
+}
+
+void Uart::sendTxBuff(char *txBuff, uint8_t length)
+{
+     a88:	cf 93       	push	r28
+     a8a:	df 93       	push	r29
+	for(uint8_t i = 0; i < length; i++)
+     a8c:	44 23       	and	r20, r20
+     a8e:	81 f0       	breq	.+32     	; 0xab0 <_ZN4Uart10sendTxBuffEPch+0x28>
+     a90:	96 2f       	mov	r25, r22
+     a92:	a6 2f       	mov	r26, r22
+     a94:	b7 2f       	mov	r27, r23
+	{
+		while(!(UCSR0A & (1<<UDRE0)));
+     a96:	e0 ec       	ldi	r30, 0xC0	; 192
+     a98:	f0 e0       	ldi	r31, 0x00	; 0
+		UDR0 = txBuff[i];
+     a9a:	c6 ec       	ldi	r28, 0xC6	; 198
+     a9c:	d0 e0       	ldi	r29, 0x00	; 0
+
+void Uart::sendTxBuff(char *txBuff, uint8_t length)
+{
+	for(uint8_t i = 0; i < length; i++)
+	{
+		while(!(UCSR0A & (1<<UDRE0)));
+     a9e:	80 81       	ld	r24, Z
+     aa0:	85 ff       	sbrs	r24, 5
+     aa2:	fd cf       	rjmp	.-6      	; 0xa9e <_ZN4Uart10sendTxBuffEPch+0x16>
+		UDR0 = txBuff[i];
+     aa4:	8d 91       	ld	r24, X+
+     aa6:	88 83       	st	Y, r24
+     aa8:	8a 2f       	mov	r24, r26
+     aaa:	89 1b       	sub	r24, r25
+	return (rxBuff + 2);
+}
+
+void Uart::sendTxBuff(char *txBuff, uint8_t length)
+{
+	for(uint8_t i = 0; i < length; i++)
+     aac:	84 17       	cp	r24, r20
+     aae:	b8 f3       	brcs	.-18     	; 0xa9e <_ZN4Uart10sendTxBuffEPch+0x16>
+	{
+		while(!(UCSR0A & (1<<UDRE0)));
+		UDR0 = txBuff[i];
+	}
+}
+     ab0:	df 91       	pop	r29
+     ab2:	cf 91       	pop	r28
+     ab4:	08 95       	ret
+
+00000ab6 <_ZN4Uart16readButtonStatusEh>:
+{
+	return programmingMode;
+}
+
+uint8_t Uart::readButtonStatus(uint8_t number)
+{
+     ab6:	ef 92       	push	r14
+     ab8:	ff 92       	push	r15
+     aba:	0f 93       	push	r16
+     abc:	1f 93       	push	r17
+     abe:	cf 93       	push	r28
+     ac0:	df 93       	push	r29
+     ac2:	8c 01       	movw	r16, r24
+	uint8_t t;
+	t = 0;
+	switch(number)
+     ac4:	62 30       	cpi	r22, 0x02	; 2
+     ac6:	51 f0       	breq	.+20     	; 0xadc <_ZN4Uart16readButtonStatusEh+0x26>
+     ac8:	18 f4       	brcc	.+6      	; 0xad0 <_ZN4Uart16readButtonStatusEh+0x1a>
+     aca:	61 30       	cpi	r22, 0x01	; 1
+     acc:	69 f0       	breq	.+26     	; 0xae8 <_ZN4Uart16readButtonStatusEh+0x32>
+     ace:	04 c0       	rjmp	.+8      	; 0xad8 <_ZN4Uart16readButtonStatusEh+0x22>
+     ad0:	63 30       	cpi	r22, 0x03	; 3
+     ad2:	31 f0       	breq	.+12     	; 0xae0 <_ZN4Uart16readButtonStatusEh+0x2a>
+     ad4:	64 30       	cpi	r22, 0x04	; 4
+     ad6:	31 f0       	breq	.+12     	; 0xae4 <_ZN4Uart16readButtonStatusEh+0x2e>
+}
+
+uint8_t Uart::readButtonStatus(uint8_t number)
+{
+	uint8_t t;
+	t = 0;
+     ad8:	c0 e0       	ldi	r28, 0x00	; 0
+     ada:	07 c0       	rjmp	.+14     	; 0xaea <_ZN4Uart16readButtonStatusEh+0x34>
+		case 1:
+		t = 3;
+		break;
+		
+		case 2:
+		t = 6;
+     adc:	c6 e0       	ldi	r28, 0x06	; 6
+		break;
+     ade:	05 c0       	rjmp	.+10     	; 0xaea <_ZN4Uart16readButtonStatusEh+0x34>
+		
+		case 3:
+		t = 9;
+     ae0:	c9 e0       	ldi	r28, 0x09	; 9
+		break;
+     ae2:	03 c0       	rjmp	.+6      	; 0xaea <_ZN4Uart16readButtonStatusEh+0x34>
+		
+		case 4:
+		t = 12;
+     ae4:	cc e0       	ldi	r28, 0x0C	; 12
+		break;
+     ae6:	01 c0       	rjmp	.+2      	; 0xaea <_ZN4Uart16readButtonStatusEh+0x34>
+		case 0:
+		t = 0;
+		break;
+		
+		case 1:
+		t = 3;
+     ae8:	c3 e0       	ldi	r28, 0x03	; 3
+		case 4:
+		t = 12;
+		break;
+	}
+	
+	if(eeprom_read_byte((uint8_t*)t) == eeprom_read_byte((uint8_t*)(t+1)))
+     aea:	d0 e0       	ldi	r29, 0x00	; 0
+     aec:	ce 01       	movw	r24, r28
+     aee:	0e 94 1c 0a 	call	0x1438	; 0x1438 <__eerd_byte_m328p>
+     af2:	f8 2e       	mov	r15, r24
+     af4:	ce 01       	movw	r24, r28
+     af6:	01 96       	adiw	r24, 0x01	; 1
+     af8:	0e 94 1c 0a 	call	0x1438	; 0x1438 <__eerd_byte_m328p>
+     afc:	e8 2e       	mov	r14, r24
+     afe:	f8 12       	cpse	r15, r24
+     b00:	03 c0       	rjmp	.+6      	; 0xb08 <_ZN4Uart16readButtonStatusEh+0x52>
+	{
+		buttonStatus = eeprom_read_byte((uint8_t*)t);
+     b02:	f8 01       	movw	r30, r16
+     b04:	f1 82       	std	Z+1, r15	; 0x01
+     b06:	0d c0       	rjmp	.+26     	; 0xb22 <_ZN4Uart16readButtonStatusEh+0x6c>
+	}
+	else if(eeprom_read_byte((uint8_t*)t) == eeprom_read_byte((uint8_t*)(t+2)))
+     b08:	ce 01       	movw	r24, r28
+     b0a:	02 96       	adiw	r24, 0x02	; 2
+     b0c:	0e 94 1c 0a 	call	0x1438	; 0x1438 <__eerd_byte_m328p>
+     b10:	f8 12       	cpse	r15, r24
+     b12:	03 c0       	rjmp	.+6      	; 0xb1a <_ZN4Uart16readButtonStatusEh+0x64>
+	{
+		buttonStatus = eeprom_read_byte((uint8_t*)t);
+     b14:	f8 01       	movw	r30, r16
+     b16:	f1 82       	std	Z+1, r15	; 0x01
+     b18:	04 c0       	rjmp	.+8      	; 0xb22 <_ZN4Uart16readButtonStatusEh+0x6c>
+	}
+	else if(eeprom_read_byte((uint8_t*)(t+1)) == eeprom_read_byte((uint8_t*)(t+2)))
+     b1a:	e8 12       	cpse	r14, r24
+     b1c:	02 c0       	rjmp	.+4      	; 0xb22 <_ZN4Uart16readButtonStatusEh+0x6c>
+	{
+		buttonStatus = eeprom_read_byte((uint8_t*)(t+1));
+     b1e:	f8 01       	movw	r30, r16
+     b20:	e1 82       	std	Z+1, r14	; 0x01
+	}
+	
+	return buttonStatus;
+}
+     b22:	f8 01       	movw	r30, r16
+     b24:	81 81       	ldd	r24, Z+1	; 0x01
+     b26:	df 91       	pop	r29
+     b28:	cf 91       	pop	r28
+     b2a:	1f 91       	pop	r17
+     b2c:	0f 91       	pop	r16
+     b2e:	ff 90       	pop	r15
+     b30:	ef 90       	pop	r14
+     b32:	08 95       	ret
+
+00000b34 <_ZN4Uart15readSoundStatusEv>:
+
+uint8_t Uart::readSoundStatus(void)
+{
+     b34:	0f 93       	push	r16
+     b36:	1f 93       	push	r17
+     b38:	cf 93       	push	r28
+     b3a:	df 93       	push	r29
+     b3c:	ec 01       	movw	r28, r24
+	if(eeprom_read_byte((uint8_t*)20) == eeprom_read_byte((uint8_t*)21))
+     b3e:	84 e1       	ldi	r24, 0x14	; 20
+     b40:	90 e0       	ldi	r25, 0x00	; 0
+     b42:	0e 94 1c 0a 	call	0x1438	; 0x1438 <__eerd_byte_m328p>
+     b46:	18 2f       	mov	r17, r24
+     b48:	85 e1       	ldi	r24, 0x15	; 21
+     b4a:	90 e0       	ldi	r25, 0x00	; 0
+     b4c:	0e 94 1c 0a 	call	0x1438	; 0x1438 <__eerd_byte_m328p>
+     b50:	08 2f       	mov	r16, r24
+     b52:	18 13       	cpse	r17, r24
+     b54:	02 c0       	rjmp	.+4      	; 0xb5a <_ZN4Uart15readSoundStatusEv+0x26>
+	{
+		soundStatus = eeprom_read_byte((uint8_t*)20);
+     b56:	1a 83       	std	Y+2, r17	; 0x02
+     b58:	0b c0       	rjmp	.+22     	; 0xb70 <_ZN4Uart15readSoundStatusEv+0x3c>
+	}
+	else if(eeprom_read_byte((uint8_t*)20) == eeprom_read_byte((uint8_t*)22))
+     b5a:	86 e1       	ldi	r24, 0x16	; 22
+     b5c:	90 e0       	ldi	r25, 0x00	; 0
+     b5e:	0e 94 1c 0a 	call	0x1438	; 0x1438 <__eerd_byte_m328p>
+     b62:	18 13       	cpse	r17, r24
+     b64:	02 c0       	rjmp	.+4      	; 0xb6a <_ZN4Uart15readSoundStatusEv+0x36>
+	{
+		soundStatus = eeprom_read_byte((uint8_t*)20);
+     b66:	1a 83       	std	Y+2, r17	; 0x02
+     b68:	03 c0       	rjmp	.+6      	; 0xb70 <_ZN4Uart15readSoundStatusEv+0x3c>
+	}
+	else if(eeprom_read_byte((uint8_t*)21) == eeprom_read_byte((uint8_t*)22))
+     b6a:	08 13       	cpse	r16, r24
+     b6c:	01 c0       	rjmp	.+2      	; 0xb70 <_ZN4Uart15readSoundStatusEv+0x3c>
+	{
+		soundStatus = eeprom_read_byte((uint8_t*)21);
+     b6e:	0a 83       	std	Y+2, r16	; 0x02
+	}
+}
+     b70:	df 91       	pop	r29
+     b72:	cf 91       	pop	r28
+     b74:	1f 91       	pop	r17
+     b76:	0f 91       	pop	r16
+     b78:	08 95       	ret
+
+00000b7a <_ZN4Uart11clearRxBuffEv>:
+
+void Uart::clearRxBuff(void)
+{
+     b7a:	20 e0       	ldi	r18, 0x00	; 0
+     b7c:	30 e0       	ldi	r19, 0x00	; 0
+	for(uint8_t i = 0; i < BUFF_LENGTH; i++)
+	{
+		rxBuff[i] = 0;
+     b7e:	f9 01       	movw	r30, r18
+     b80:	eb 52       	subi	r30, 0x2B	; 43
+     b82:	fe 4f       	sbci	r31, 0xFE	; 254
+     b84:	10 82       	st	Z, r1
+     b86:	2f 5f       	subi	r18, 0xFF	; 255
+     b88:	3f 4f       	sbci	r19, 0xFF	; 255
+	}
+}
+
+void Uart::clearRxBuff(void)
+{
+	for(uint8_t i = 0; i < BUFF_LENGTH; i++)
+     b8a:	24 31       	cpi	r18, 0x14	; 20
+     b8c:	31 05       	cpc	r19, r1
+     b8e:	b9 f7       	brne	.-18     	; 0xb7e <_ZN4Uart11clearRxBuffEv+0x4>
+	{
+		rxBuff[i] = 0;
+	}
+	uartCommand = COM_NO;
+     b90:	fc 01       	movw	r30, r24
+     b92:	10 82       	st	Z, r1
+     b94:	08 95       	ret
+
+00000b96 <main>:
+SoundOne one;
+SoundTwo two;
+SoundThree three;
+
+int main(void)
+{
+     b96:	cf 93       	push	r28
+     b98:	df 93       	push	r29
+     b9a:	cd b7       	in	r28, 0x3d	; 61
+     b9c:	de b7       	in	r29, 0x3e	; 62
+     b9e:	27 97       	sbiw	r28, 0x07	; 7
+     ba0:	0f b6       	in	r0, 0x3f	; 63
+     ba2:	f8 94       	cli
+     ba4:	de bf       	out	0x3e, r29	; 62
+     ba6:	0f be       	out	0x3f, r0	; 63
+     ba8:	cd bf       	out	0x3d, r28	; 61
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     baa:	2f ef       	ldi	r18, 0xFF	; 255
+     bac:	83 ed       	ldi	r24, 0xD3	; 211
+     bae:	90 e3       	ldi	r25, 0x30	; 48
+     bb0:	21 50       	subi	r18, 0x01	; 1
+     bb2:	80 40       	sbci	r24, 0x00	; 0
+     bb4:	90 40       	sbci	r25, 0x00	; 0
+     bb6:	e1 f7       	brne	.-8      	; 0xbb0 <main+0x1a>
+     bb8:	00 c0       	rjmp	.+0      	; 0xbba <main+0x24>
+     bba:	00 00       	nop
+	_delay_ms(1000);
+	
+	//���������� ��������
+	Display lcd;
+	Keypad keypad;
+     bbc:	ce 01       	movw	r24, r28
+     bbe:	06 96       	adiw	r24, 0x06	; 6
+     bc0:	0e 94 50 03 	call	0x6a0	; 0x6a0 <_ZN6KeypadC1Ev>
+	Buttons buttons;
+     bc4:	ce 01       	movw	r24, r28
+     bc6:	05 96       	adiw	r24, 0x05	; 5
+     bc8:	0e 94 45 04 	call	0x88a	; 0x88a <_ZN7ButtonsC1Ev>
+	Uart uart;
+	
+	//�������� ������� ���������� �� �������
+	signal[0] = &sound;
+     bcc:	86 ec       	ldi	r24, 0xC6	; 198
+     bce:	91 e0       	ldi	r25, 0x01	; 1
+     bd0:	90 93 c1 01 	sts	0x01C1, r25
+     bd4:	80 93 c0 01 	sts	0x01C0, r24
+	signal[1] = &one;
+     bd8:	8c eb       	ldi	r24, 0xBC	; 188
+     bda:	91 e0       	ldi	r25, 0x01	; 1
+     bdc:	90 93 c3 01 	sts	0x01C3, r25
+     be0:	80 93 c2 01 	sts	0x01C2, r24
+	signal[2] = &two;
+     be4:	8a eb       	ldi	r24, 0xBA	; 186
+     be6:	91 e0       	ldi	r25, 0x01	; 1
+     be8:	90 93 c5 01 	sts	0x01C5, r25
+     bec:	80 93 c4 01 	sts	0x01C4, r24
+	signal[3] = &three;
+     bf0:	88 eb       	ldi	r24, 0xB8	; 184
+     bf2:	91 e0       	ldi	r25, 0x01	; 1
+     bf4:	90 93 c7 01 	sts	0x01C7, r25
+     bf8:	80 93 c6 01 	sts	0x01C6, r24
+	
+	//�������������
+	lcd.init();
+     bfc:	ce 01       	movw	r24, r28
+     bfe:	07 96       	adiw	r24, 0x07	; 7
+     c00:	0e 94 b6 01 	call	0x36c	; 0x36c <_ZN7Display4initEv>
+	lcd.ledOff();
+     c04:	ce 01       	movw	r24, r28
+     c06:	07 96       	adiw	r24, 0x07	; 7
+     c08:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN7Display6ledOffEv>
+	buttons.initPorts();
+     c0c:	ce 01       	movw	r24, r28
+     c0e:	05 96       	adiw	r24, 0x05	; 5
+     c10:	0e 94 48 04 	call	0x890	; 0x890 <_ZN7Buttons9initPortsEv>
+volatile bool Uart::programmingMode = false;
+
+void Uart::InitUart(uint16_t speed)
+{
+	// setting the baud rate
+	UBRR0 = F_CPU/16/speed-1;
+     c14:	87 e6       	ldi	r24, 0x67	; 103
+     c16:	90 e0       	ldi	r25, 0x00	; 0
+     c18:	90 93 c5 00 	sts	0x00C5, r25
+     c1c:	80 93 c4 00 	sts	0x00C4, r24
+	// enabling TX & RX
+	UCSR0A = (1 << UDRE0);
+     c20:	80 e2       	ldi	r24, 0x20	; 32
+     c22:	80 93 c0 00 	sts	0x00C0, r24
+	UCSR0C =  (1 << UCSZ01)|(1 << UCSZ00); //Set frame: 8data, 1 stop
+     c26:	86 e0       	ldi	r24, 0x06	; 6
+     c28:	80 93 c2 00 	sts	0x00C2, r24
+}
+
+
+void Uart::getchUartEn(void)
+{
+	UCSR0B = (1 << RXCIE0)|(1 << RXEN0);
+     c2c:	80 e9       	ldi	r24, 0x90	; 144
+     c2e:	80 93 c1 00 	sts	0x00C1, r24
+	uart.InitUart(9600);
+	uart.getchUartEn();
+	
+	bool currentMode = true;
+     c32:	bb 24       	eor	r11, r11
+     c34:	b3 94       	inc	r11
+     c36:	0f 2e       	mov	r0, r31
+     c38:	fb ec       	ldi	r31, 0xCB	; 203
+     c3a:	cf 2e       	mov	r12, r31
+     c3c:	f1 e0       	ldi	r31, 0x01	; 1
+     c3e:	df 2e       	mov	r13, r31
+     c40:	f0 2d       	mov	r31, r0
+				currentLed = false; //��������� ���������
+				//�������� ������
+				statusOfButtons[0] = uart.readButtonStatus(0);
+				statusOfButtons[1] = uart.readButtonStatus(1);
+				statusOfButtons[2] = uart.readButtonStatus(2);
+				statusOfButtons[3] = uart.readButtonStatus(3);
+     c42:	0f 2e       	mov	r0, r31
+     c44:	fe ec       	ldi	r31, 0xCE	; 206
+     c46:	2f 2e       	mov	r2, r31
+     c48:	f1 e0       	ldi	r31, 0x01	; 1
+     c4a:	3f 2e       	mov	r3, r31
+     c4c:	f0 2d       	mov	r31, r0
+     c4e:	ac 2c       	mov	r10, r12
+     c50:	7d 2c       	mov	r7, r13
+				{
+					currentMenu = MENU_BUTTONS;
+					lcd.clearScreen();
+					lcd.setCursor(0,0);
+					lcd.sendString("Enabled:");
+					lcd.setCursor(1,0);
+     c52:	61 2c       	mov	r6, r1
+     c54:	51 2c       	mov	r5, r1
+	UCSR0C =  (1 << UCSZ01)|(1 << UCSZ00); //Set frame: 8data, 1 stop
+}
+
+void Uart::sendUartEn(void)
+{
+	UCSR0B = (1 << TXEN0);
+     c56:	0f 2e       	mov	r0, r31
+     c58:	f1 ec       	ldi	r31, 0xC1	; 193
+     c5a:	8f 2e       	mov	r8, r31
+     c5c:	91 2c       	mov	r9, r1
+     c5e:	f0 2d       	mov	r31, r0
+	}
+}
+
+bool Uart::getProgrammingMode(void)
+{
+	return programmingMode;
+     c60:	80 91 d2 01 	lds	r24, 0x01D2
+	
+	bool currentMode = true;
+	
+    while(1)
+    {
+		if(uart.getProgrammingMode() == false)
+     c64:	81 11       	cpse	r24, r1
+     c66:	e6 c1       	rjmp	.+972    	; 0x1034 <main+0x49e>
+		{
+			if(currentMode == true)
+     c68:	bb 20       	and	r11, r11
+     c6a:	09 f4       	brne	.+2      	; 0xc6e <main+0xd8>
+     c6c:	73 c0       	rjmp	.+230    	; 0xd54 <main+0x1be>
+			{
+				cli();
+     c6e:	f8 94       	cli
+				//�������������
+				keypad.Init_ADC();
+     c70:	ce 01       	movw	r24, r28
+     c72:	06 96       	adiw	r24, 0x06	; 6
+     c74:	0e 94 59 03 	call	0x6b2	; 0x6b2 <_ZN6Keypad8Init_ADCEv>
+				buttons.init_Timer0();
+     c78:	ce 01       	movw	r24, r28
+     c7a:	05 96       	adiw	r24, 0x05	; 5
+     c7c:	0e 94 52 04 	call	0x8a4	; 0x8a4 <_ZN7Buttons11init_Timer0Ev>
+				
+				//��������� ����
+				lcd.clearScreen();
+     c80:	ce 01       	movw	r24, r28
+     c82:	07 96       	adiw	r24, 0x07	; 7
+     c84:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+				lcd.setCursor(0,0);
+     c88:	40 e0       	ldi	r20, 0x00	; 0
+     c8a:	60 e0       	ldi	r22, 0x00	; 0
+     c8c:	ce 01       	movw	r24, r28
+     c8e:	07 96       	adiw	r24, 0x07	; 7
+     c90:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+				lcd.sendString(">Buttons");
+     c94:	61 e0       	ldi	r22, 0x01	; 1
+     c96:	71 e0       	ldi	r23, 0x01	; 1
+     c98:	ce 01       	movw	r24, r28
+     c9a:	07 96       	adiw	r24, 0x07	; 7
+     c9c:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+				lcd.setCursor(1,0);
+     ca0:	40 e0       	ldi	r20, 0x00	; 0
+     ca2:	61 e0       	ldi	r22, 0x01	; 1
+     ca4:	ce 01       	movw	r24, r28
+     ca6:	07 96       	adiw	r24, 0x07	; 7
+     ca8:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+				lcd.sendString(" Sound test");
+     cac:	6a e0       	ldi	r22, 0x0A	; 10
+     cae:	71 e0       	ldi	r23, 0x01	; 1
+     cb0:	ce 01       	movw	r24, r28
+     cb2:	07 96       	adiw	r24, 0x07	; 7
+     cb4:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+				
+				//��������� ���������
+				currentKey = NO; //��������� ����������
+     cb8:	8f ef       	ldi	r24, 0xFF	; 255
+     cba:	80 93 d1 01 	sts	0x01D1, r24
+				currentLed = false; //��������� ���������
+     cbe:	10 92 d0 01 	sts	0x01D0, r1
+				//�������� ������
+				statusOfButtons[0] = uart.readButtonStatus(0);
+     cc2:	60 e0       	ldi	r22, 0x00	; 0
+     cc4:	ce 01       	movw	r24, r28
+     cc6:	01 96       	adiw	r24, 0x01	; 1
+     cc8:	0e 94 5b 05 	call	0xab6	; 0xab6 <_ZN4Uart16readButtonStatusEh>
+     ccc:	f6 01       	movw	r30, r12
+     cce:	80 83       	st	Z, r24
+				statusOfButtons[1] = uart.readButtonStatus(1);
+     cd0:	61 e0       	ldi	r22, 0x01	; 1
+     cd2:	ce 01       	movw	r24, r28
+     cd4:	01 96       	adiw	r24, 0x01	; 1
+     cd6:	0e 94 5b 05 	call	0xab6	; 0xab6 <_ZN4Uart16readButtonStatusEh>
+     cda:	ec ec       	ldi	r30, 0xCC	; 204
+     cdc:	f1 e0       	ldi	r31, 0x01	; 1
+     cde:	80 83       	st	Z, r24
+				statusOfButtons[2] = uart.readButtonStatus(2);
+     ce0:	62 e0       	ldi	r22, 0x02	; 2
+     ce2:	ce 01       	movw	r24, r28
+     ce4:	01 96       	adiw	r24, 0x01	; 1
+     ce6:	0e 94 5b 05 	call	0xab6	; 0xab6 <_ZN4Uart16readButtonStatusEh>
+     cea:	ed ec       	ldi	r30, 0xCD	; 205
+     cec:	f1 e0       	ldi	r31, 0x01	; 1
+     cee:	80 83       	st	Z, r24
+				statusOfButtons[3] = uart.readButtonStatus(3);
+     cf0:	63 e0       	ldi	r22, 0x03	; 3
+     cf2:	ce 01       	movw	r24, r28
+     cf4:	01 96       	adiw	r24, 0x01	; 1
+     cf6:	0e 94 5b 05 	call	0xab6	; 0xab6 <_ZN4Uart16readButtonStatusEh>
+     cfa:	f1 01       	movw	r30, r2
+     cfc:	80 83       	st	Z, r24
+				statusOfButtons[4] = uart.readButtonStatus(4);
+     cfe:	64 e0       	ldi	r22, 0x04	; 4
+     d00:	ce 01       	movw	r24, r28
+     d02:	01 96       	adiw	r24, 0x01	; 1
+     d04:	0e 94 5b 05 	call	0xab6	; 0xab6 <_ZN4Uart16readButtonStatusEh>
+     d08:	ef ec       	ldi	r30, 0xCF	; 207
+     d0a:	f1 e0       	ldi	r31, 0x01	; 1
+     d0c:	80 83       	st	Z, r24
+				currentMenu = MENU_HOME; //��������� ����
+     d0e:	10 92 ca 01 	sts	0x01CA, r1
+				currentCursor = CURSOR_BUTTONS; //��������� �������
+     d12:	83 e0       	ldi	r24, 0x03	; 3
+     d14:	80 93 c9 01 	sts	0x01C9, r24
+				currentSignal = signal[uart.readSoundStatus()]; //������
+     d18:	ce 01       	movw	r24, r28
+     d1a:	01 96       	adiw	r24, 0x01	; 1
+     d1c:	0e 94 9a 05 	call	0xb34	; 0xb34 <_ZN4Uart15readSoundStatusEv>
+     d20:	e8 2f       	mov	r30, r24
+     d22:	f0 e0       	ldi	r31, 0x00	; 0
+     d24:	ee 0f       	add	r30, r30
+     d26:	ff 1f       	adc	r31, r31
+     d28:	e0 54       	subi	r30, 0x40	; 64
+     d2a:	fe 4f       	sbci	r31, 0xFE	; 254
+     d2c:	80 81       	ld	r24, Z
+     d2e:	91 81       	ldd	r25, Z+1	; 0x01
+     d30:	90 93 bf 01 	sts	0x01BF, r25
+     d34:	80 93 be 01 	sts	0x01BE, r24
+	UCSR0C =  (1 << UCSZ01)|(1 << UCSZ00); //Set frame: 8data, 1 stop
+}
+
+void Uart::sendUartEn(void)
+{
+	UCSR0B = (1 << TXEN0);
+     d38:	88 e0       	ldi	r24, 0x08	; 8
+     d3a:	f4 01       	movw	r30, r8
+     d3c:	80 83       	st	Z, r24
+				
+				uart.sendUartEn();
+				uart.sendTxBuff("ProgrOff\n", 10);
+     d3e:	4a e0       	ldi	r20, 0x0A	; 10
+     d40:	66 e1       	ldi	r22, 0x16	; 22
+     d42:	71 e0       	ldi	r23, 0x01	; 1
+     d44:	ce 01       	movw	r24, r28
+     d46:	01 96       	adiw	r24, 0x01	; 1
+     d48:	0e 94 44 05 	call	0xa88	; 0xa88 <_ZN4Uart10sendTxBuffEPch>
+}
+
+
+void Uart::getchUartEn(void)
+{
+	UCSR0B = (1 << RXCIE0)|(1 << RXEN0);
+     d4c:	80 e9       	ldi	r24, 0x90	; 144
+     d4e:	f4 01       	movw	r30, r8
+     d50:	80 83       	st	Z, r24
+				uart.getchUartEn();
+				currentMode = false;
+				sei();
+     d52:	78 94       	sei
+			}
+		//==����� ����������=============================================
+			if(currentKey != keypad.getKey())
+     d54:	ce 01       	movw	r24, r28
+     d56:	06 96       	adiw	r24, 0x06	; 6
+     d58:	0e 94 76 03 	call	0x6ec	; 0x6ec <_ZN6Keypad6getKeyEv>
+     d5c:	90 91 d1 01 	lds	r25, 0x01D1
+     d60:	89 17       	cp	r24, r25
+     d62:	09 f4       	brne	.+2      	; 0xd66 <main+0x1d0>
+     d64:	47 c1       	rjmp	.+654    	; 0xff4 <main+0x45e>
+			{
+			currentKey = keypad.getKey();
+     d66:	ce 01       	movw	r24, r28
+     d68:	06 96       	adiw	r24, 0x06	; 6
+     d6a:	0e 94 76 03 	call	0x6ec	; 0x6ec <_ZN6Keypad6getKeyEv>
+     d6e:	80 93 d1 01 	sts	0x01D1, r24
+			switch(currentKey)
+     d72:	82 35       	cpi	r24, 0x52	; 82
+     d74:	09 f4       	brne	.+2      	; 0xd78 <main+0x1e2>
+     d76:	59 c0       	rjmp	.+178    	; 0xe2a <main+0x294>
+     d78:	30 f4       	brcc	.+12     	; 0xd86 <main+0x1f0>
+     d7a:	88 23       	and	r24, r24
+     d7c:	09 f4       	brne	.+2      	; 0xd80 <main+0x1ea>
+     d7e:	c6 c0       	rjmp	.+396    	; 0xf0c <main+0x376>
+     d80:	84 32       	cpi	r24, 0x24	; 36
+     d82:	41 f0       	breq	.+16     	; 0xd94 <main+0x1fe>
+     d84:	37 c1       	rjmp	.+622    	; 0xff4 <main+0x45e>
+     d86:	8e 37       	cpi	r24, 0x7E	; 126
+     d88:	09 f4       	brne	.+2      	; 0xd8c <main+0x1f6>
+     d8a:	9a c0       	rjmp	.+308    	; 0xec0 <main+0x32a>
+     d8c:	89 3b       	cpi	r24, 0xB9	; 185
+     d8e:	09 f4       	brne	.+2      	; 0xd92 <main+0x1fc>
+     d90:	1f c1       	rjmp	.+574    	; 0xfd0 <main+0x43a>
+     d92:	30 c1       	rjmp	.+608    	; 0xff4 <main+0x45e>
+			{		
+				case UP:
+				if(currentMenu == MENU_HOME)
+     d94:	80 91 ca 01 	lds	r24, 0x01CA
+     d98:	81 11       	cpse	r24, r1
+     d9a:	20 c0       	rjmp	.+64     	; 0xddc <main+0x246>
+				{
+					lcd.clearScreen();
+     d9c:	ce 01       	movw	r24, r28
+     d9e:	07 96       	adiw	r24, 0x07	; 7
+     da0:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+					lcd.setCursor(0,0);
+     da4:	40 e0       	ldi	r20, 0x00	; 0
+     da6:	60 e0       	ldi	r22, 0x00	; 0
+     da8:	ce 01       	movw	r24, r28
+     daa:	07 96       	adiw	r24, 0x07	; 7
+     dac:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(">Buttons");
+     db0:	61 e0       	ldi	r22, 0x01	; 1
+     db2:	71 e0       	ldi	r23, 0x01	; 1
+     db4:	ce 01       	movw	r24, r28
+     db6:	07 96       	adiw	r24, 0x07	; 7
+     db8:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					lcd.setCursor(1,0);
+     dbc:	40 e0       	ldi	r20, 0x00	; 0
+     dbe:	61 e0       	ldi	r22, 0x01	; 1
+     dc0:	ce 01       	movw	r24, r28
+     dc2:	07 96       	adiw	r24, 0x07	; 7
+     dc4:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(" Sound test");
+     dc8:	6a e0       	ldi	r22, 0x0A	; 10
+     dca:	71 e0       	ldi	r23, 0x01	; 1
+     dcc:	ce 01       	movw	r24, r28
+     dce:	07 96       	adiw	r24, 0x07	; 7
+     dd0:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					currentCursor = CURSOR_BUTTONS;
+     dd4:	83 e0       	ldi	r24, 0x03	; 3
+     dd6:	80 93 c9 01 	sts	0x01C9, r24
+     dda:	0c c1       	rjmp	.+536    	; 0xff4 <main+0x45e>
+				}
+				else if(currentMenu == MENU_SOUND_TEST)
+     ddc:	82 30       	cpi	r24, 0x02	; 2
+     dde:	09 f0       	breq	.+2      	; 0xde2 <main+0x24c>
+     de0:	09 c1       	rjmp	.+530    	; 0xff4 <main+0x45e>
+				{
+					lcd.clearScreen();
+     de2:	ce 01       	movw	r24, r28
+     de4:	07 96       	adiw	r24, 0x07	; 7
+     de6:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+					lcd.setCursor(0,0);
+     dea:	40 e0       	ldi	r20, 0x00	; 0
+     dec:	60 e0       	ldi	r22, 0x00	; 0
+     dee:	ce 01       	movw	r24, r28
+     df0:	07 96       	adiw	r24, 0x07	; 7
+     df2:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(">Sound Off");
+     df6:	60 e2       	ldi	r22, 0x20	; 32
+     df8:	71 e0       	ldi	r23, 0x01	; 1
+     dfa:	ce 01       	movw	r24, r28
+     dfc:	07 96       	adiw	r24, 0x07	; 7
+     dfe:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					lcd.setCursor(1,0);
+     e02:	40 e0       	ldi	r20, 0x00	; 0
+     e04:	61 e0       	ldi	r22, 0x01	; 1
+     e06:	ce 01       	movw	r24, r28
+     e08:	07 96       	adiw	r24, 0x07	; 7
+     e0a:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(" Sound On");
+     e0e:	6b e2       	ldi	r22, 0x2B	; 43
+     e10:	71 e0       	ldi	r23, 0x01	; 1
+     e12:	ce 01       	movw	r24, r28
+     e14:	07 96       	adiw	r24, 0x07	; 7
+     e16:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					sound.soundOff();
+     e1a:	86 ec       	ldi	r24, 0xC6	; 198
+     e1c:	91 e0       	ldi	r25, 0x01	; 1
+     e1e:	0e 94 20 04 	call	0x840	; 0x840 <_ZN5Sound8soundOffEv>
+					currentCursor = CURSOR_SOUND_OFF;
+     e22:	85 e0       	ldi	r24, 0x05	; 5
+     e24:	80 93 c9 01 	sts	0x01C9, r24
+     e28:	e5 c0       	rjmp	.+458    	; 0xff4 <main+0x45e>
+				}
+				break;	
+		
+				case DOWN:
+				if(currentMenu == MENU_HOME)
+     e2a:	80 91 ca 01 	lds	r24, 0x01CA
+     e2e:	81 11       	cpse	r24, r1
+     e30:	20 c0       	rjmp	.+64     	; 0xe72 <main+0x2dc>
+				{
+					lcd.clearScreen();
+     e32:	ce 01       	movw	r24, r28
+     e34:	07 96       	adiw	r24, 0x07	; 7
+     e36:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+					lcd.setCursor(0,0);
+     e3a:	40 e0       	ldi	r20, 0x00	; 0
+     e3c:	60 e0       	ldi	r22, 0x00	; 0
+     e3e:	ce 01       	movw	r24, r28
+     e40:	07 96       	adiw	r24, 0x07	; 7
+     e42:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(" Buttons");
+     e46:	65 e3       	ldi	r22, 0x35	; 53
+     e48:	71 e0       	ldi	r23, 0x01	; 1
+     e4a:	ce 01       	movw	r24, r28
+     e4c:	07 96       	adiw	r24, 0x07	; 7
+     e4e:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					lcd.setCursor(1,0);
+     e52:	40 e0       	ldi	r20, 0x00	; 0
+     e54:	61 e0       	ldi	r22, 0x01	; 1
+     e56:	ce 01       	movw	r24, r28
+     e58:	07 96       	adiw	r24, 0x07	; 7
+     e5a:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(">Sound test");
+     e5e:	6e e3       	ldi	r22, 0x3E	; 62
+     e60:	71 e0       	ldi	r23, 0x01	; 1
+     e62:	ce 01       	movw	r24, r28
+     e64:	07 96       	adiw	r24, 0x07	; 7
+     e66:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					currentCursor = CURSOR_SOUND_TEST;
+     e6a:	84 e0       	ldi	r24, 0x04	; 4
+     e6c:	80 93 c9 01 	sts	0x01C9, r24
+     e70:	c1 c0       	rjmp	.+386    	; 0xff4 <main+0x45e>
+				}
+				else if(currentMenu == MENU_SOUND_TEST)
+     e72:	82 30       	cpi	r24, 0x02	; 2
+     e74:	09 f0       	breq	.+2      	; 0xe78 <main+0x2e2>
+     e76:	be c0       	rjmp	.+380    	; 0xff4 <main+0x45e>
+				{
+					lcd.clearScreen();
+     e78:	ce 01       	movw	r24, r28
+     e7a:	07 96       	adiw	r24, 0x07	; 7
+     e7c:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+					lcd.setCursor(0,0);
+     e80:	40 e0       	ldi	r20, 0x00	; 0
+     e82:	60 e0       	ldi	r22, 0x00	; 0
+     e84:	ce 01       	movw	r24, r28
+     e86:	07 96       	adiw	r24, 0x07	; 7
+     e88:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(" Sound Off");
+     e8c:	6a e4       	ldi	r22, 0x4A	; 74
+     e8e:	71 e0       	ldi	r23, 0x01	; 1
+     e90:	ce 01       	movw	r24, r28
+     e92:	07 96       	adiw	r24, 0x07	; 7
+     e94:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					lcd.setCursor(1,0);
+     e98:	40 e0       	ldi	r20, 0x00	; 0
+     e9a:	61 e0       	ldi	r22, 0x01	; 1
+     e9c:	ce 01       	movw	r24, r28
+     e9e:	07 96       	adiw	r24, 0x07	; 7
+     ea0:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(">Sound On");
+     ea4:	65 e5       	ldi	r22, 0x55	; 85
+     ea6:	71 e0       	ldi	r23, 0x01	; 1
+     ea8:	ce 01       	movw	r24, r28
+     eaa:	07 96       	adiw	r24, 0x07	; 7
+     eac:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					sound.soundOn();
+     eb0:	86 ec       	ldi	r24, 0xC6	; 198
+     eb2:	91 e0       	ldi	r25, 0x01	; 1
+     eb4:	0e 94 ff 03 	call	0x7fe	; 0x7fe <_ZN5Sound7soundOnEv>
+					currentCursor = CURSOR_SOUND_ON;
+     eb8:	86 e0       	ldi	r24, 0x06	; 6
+     eba:	80 93 c9 01 	sts	0x01C9, r24
+     ebe:	9a c0       	rjmp	.+308    	; 0xff4 <main+0x45e>
+				}
+				break;	
+				
+				case LEFT:
+				lcd.clearScreen();
+     ec0:	ce 01       	movw	r24, r28
+     ec2:	07 96       	adiw	r24, 0x07	; 7
+     ec4:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+				lcd.setCursor(0,0);
+     ec8:	40 e0       	ldi	r20, 0x00	; 0
+     eca:	60 e0       	ldi	r22, 0x00	; 0
+     ecc:	ce 01       	movw	r24, r28
+     ece:	07 96       	adiw	r24, 0x07	; 7
+     ed0:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+				lcd.sendString(">Buttons");
+     ed4:	61 e0       	ldi	r22, 0x01	; 1
+     ed6:	71 e0       	ldi	r23, 0x01	; 1
+     ed8:	ce 01       	movw	r24, r28
+     eda:	07 96       	adiw	r24, 0x07	; 7
+     edc:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+				lcd.setCursor(1,0);
+     ee0:	40 e0       	ldi	r20, 0x00	; 0
+     ee2:	61 e0       	ldi	r22, 0x01	; 1
+     ee4:	ce 01       	movw	r24, r28
+     ee6:	07 96       	adiw	r24, 0x07	; 7
+     ee8:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+				lcd.sendString(" Sound test");
+     eec:	6a e0       	ldi	r22, 0x0A	; 10
+     eee:	71 e0       	ldi	r23, 0x01	; 1
+     ef0:	ce 01       	movw	r24, r28
+     ef2:	07 96       	adiw	r24, 0x07	; 7
+     ef4:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+				currentCursor = CURSOR_BUTTONS;
+     ef8:	83 e0       	ldi	r24, 0x03	; 3
+     efa:	80 93 c9 01 	sts	0x01C9, r24
+				currentMenu = MENU_HOME;
+     efe:	10 92 ca 01 	sts	0x01CA, r1
+				sound.soundOff();
+     f02:	86 ec       	ldi	r24, 0xC6	; 198
+     f04:	91 e0       	ldi	r25, 0x01	; 1
+     f06:	0e 94 20 04 	call	0x840	; 0x840 <_ZN5Sound8soundOffEv>
+				break;
+     f0a:	74 c0       	rjmp	.+232    	; 0xff4 <main+0x45e>
+				
+				case RIGHT:
+				if(currentCursor == CURSOR_BUTTONS)
+     f0c:	80 91 c9 01 	lds	r24, 0x01C9
+     f10:	83 30       	cpi	r24, 0x03	; 3
+     f12:	e1 f5       	brne	.+120    	; 0xf8c <main+0x3f6>
+				{
+					currentMenu = MENU_BUTTONS;
+     f14:	81 e0       	ldi	r24, 0x01	; 1
+     f16:	80 93 ca 01 	sts	0x01CA, r24
+					lcd.clearScreen();
+     f1a:	ce 01       	movw	r24, r28
+     f1c:	07 96       	adiw	r24, 0x07	; 7
+     f1e:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+					lcd.setCursor(0,0);
+     f22:	40 e0       	ldi	r20, 0x00	; 0
+     f24:	60 e0       	ldi	r22, 0x00	; 0
+     f26:	ce 01       	movw	r24, r28
+     f28:	07 96       	adiw	r24, 0x07	; 7
+     f2a:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString("Enabled:");
+     f2e:	6f e5       	ldi	r22, 0x5F	; 95
+     f30:	71 e0       	ldi	r23, 0x01	; 1
+     f32:	ce 01       	movw	r24, r28
+     f34:	07 96       	adiw	r24, 0x07	; 7
+     f36:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					lcd.setCursor(1,0);
+     f3a:	40 e0       	ldi	r20, 0x00	; 0
+     f3c:	61 e0       	ldi	r22, 0x01	; 1
+     f3e:	ce 01       	movw	r24, r28
+     f40:	07 96       	adiw	r24, 0x07	; 7
+     f42:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+     f46:	ea 2c       	mov	r14, r10
+     f48:	f7 2c       	mov	r15, r7
+     f4a:	06 2d       	mov	r16, r6
+     f4c:	15 2d       	mov	r17, r5
+					for (uint8_t i = 0; i < 5; i++)
+					{
+						if(statusOfButtons[i] == 1)
+     f4e:	f7 01       	movw	r30, r14
+     f50:	81 91       	ld	r24, Z+
+     f52:	7f 01       	movw	r14, r30
+     f54:	0f 5f       	subi	r16, 0xFF	; 255
+     f56:	1f 4f       	sbci	r17, 0xFF	; 255
+     f58:	81 30       	cpi	r24, 0x01	; 1
+     f5a:	a1 f4       	brne	.+40     	; 0xf84 <main+0x3ee>
+    } else if (__radix < 2 || __radix > 36) {
+	*__s = 0;
+	return __s;
+    } else {
+	extern char *__itoa_ncheck (int, char *, unsigned char);
+	return __itoa_ncheck (__val, __s, __radix);
+     f5c:	4a e0       	ldi	r20, 0x0A	; 10
+     f5e:	be 01       	movw	r22, r28
+     f60:	6c 5f       	subi	r22, 0xFC	; 252
+     f62:	7f 4f       	sbci	r23, 0xFF	; 255
+     f64:	c8 01       	movw	r24, r16
+     f66:	0e 94 f7 09 	call	0x13ee	; 0x13ee <__itoa_ncheck>
+						{
+							char t[1];
+							itoa((i+1),t,10);
+							lcd.sendString(t);
+     f6a:	be 01       	movw	r22, r28
+     f6c:	6c 5f       	subi	r22, 0xFC	; 252
+     f6e:	7f 4f       	sbci	r23, 0xFF	; 255
+     f70:	ce 01       	movw	r24, r28
+     f72:	07 96       	adiw	r24, 0x07	; 7
+     f74:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+							lcd.sendString(" ");
+     f78:	68 e6       	ldi	r22, 0x68	; 104
+     f7a:	71 e0       	ldi	r23, 0x01	; 1
+     f7c:	ce 01       	movw	r24, r28
+     f7e:	07 96       	adiw	r24, 0x07	; 7
+     f80:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					currentMenu = MENU_BUTTONS;
+					lcd.clearScreen();
+					lcd.setCursor(0,0);
+					lcd.sendString("Enabled:");
+					lcd.setCursor(1,0);
+					for (uint8_t i = 0; i < 5; i++)
+     f84:	05 30       	cpi	r16, 0x05	; 5
+     f86:	11 05       	cpc	r17, r1
+     f88:	11 f7       	brne	.-60     	; 0xf4e <main+0x3b8>
+     f8a:	34 c0       	rjmp	.+104    	; 0xff4 <main+0x45e>
+							lcd.sendString(t);
+							lcd.sendString(" ");
+						}
+					}
+				}
+				else if(currentCursor == CURSOR_SOUND_TEST)
+     f8c:	84 30       	cpi	r24, 0x04	; 4
+     f8e:	91 f5       	brne	.+100    	; 0xff4 <main+0x45e>
+				{
+					currentMenu = MENU_SOUND_TEST;
+     f90:	82 e0       	ldi	r24, 0x02	; 2
+     f92:	80 93 ca 01 	sts	0x01CA, r24
+					lcd.clearScreen();
+     f96:	ce 01       	movw	r24, r28
+     f98:	07 96       	adiw	r24, 0x07	; 7
+     f9a:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+					lcd.setCursor(0,0);
+     f9e:	40 e0       	ldi	r20, 0x00	; 0
+     fa0:	60 e0       	ldi	r22, 0x00	; 0
+     fa2:	ce 01       	movw	r24, r28
+     fa4:	07 96       	adiw	r24, 0x07	; 7
+     fa6:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(">Sound Off");
+     faa:	60 e2       	ldi	r22, 0x20	; 32
+     fac:	71 e0       	ldi	r23, 0x01	; 1
+     fae:	ce 01       	movw	r24, r28
+     fb0:	07 96       	adiw	r24, 0x07	; 7
+     fb2:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+					lcd.setCursor(1,0);
+     fb6:	40 e0       	ldi	r20, 0x00	; 0
+     fb8:	61 e0       	ldi	r22, 0x01	; 1
+     fba:	ce 01       	movw	r24, r28
+     fbc:	07 96       	adiw	r24, 0x07	; 7
+     fbe:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+					lcd.sendString(" Sound On");
+     fc2:	6b e2       	ldi	r22, 0x2B	; 43
+     fc4:	71 e0       	ldi	r23, 0x01	; 1
+     fc6:	ce 01       	movw	r24, r28
+     fc8:	07 96       	adiw	r24, 0x07	; 7
+     fca:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+     fce:	12 c0       	rjmp	.+36     	; 0xff4 <main+0x45e>
+				}
+				break;
+				
+				case SELECT:
+				if(currentLed == true)
+     fd0:	80 91 d0 01 	lds	r24, 0x01D0
+     fd4:	88 23       	and	r24, r24
+     fd6:	39 f0       	breq	.+14     	; 0xfe6 <main+0x450>
+				{
+					lcd.ledOff();	
+     fd8:	ce 01       	movw	r24, r28
+     fda:	07 96       	adiw	r24, 0x07	; 7
+     fdc:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN7Display6ledOffEv>
+					currentLed = false;
+     fe0:	10 92 d0 01 	sts	0x01D0, r1
+     fe4:	07 c0       	rjmp	.+14     	; 0xff4 <main+0x45e>
+				}
+				else if(currentLed == false)
+				{
+					lcd.ledOn();
+     fe6:	ce 01       	movw	r24, r28
+     fe8:	07 96       	adiw	r24, 0x07	; 7
+     fea:	0e 94 44 03 	call	0x688	; 0x688 <_ZN7Display5ledOnEv>
+					currentLed = true;
+     fee:	81 e0       	ldi	r24, 0x01	; 1
+     ff0:	80 93 d0 01 	sts	0x01D0, r24
+			}
+		}
+		//=================================================================
+		
+		//==����� ������===================================================
+			if(buttons.getPressedButton() == true)
+     ff4:	ce 01       	movw	r24, r28
+     ff6:	05 96       	adiw	r24, 0x05	; 5
+     ff8:	0e 94 84 04 	call	0x908	; 0x908 <_ZN7Buttons16getPressedButtonEv>
+     ffc:	88 23       	and	r24, r24
+     ffe:	09 f4       	brne	.+2      	; 0x1002 <main+0x46c>
+    1000:	c7 c0       	rjmp	.+398    	; 0x1190 <main+0x5fa>
+			{
+				lcd.clearScreen();
+    1002:	ce 01       	movw	r24, r28
+    1004:	07 96       	adiw	r24, 0x07	; 7
+    1006:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+				lcd.setCursor(0,0);
+    100a:	40 e0       	ldi	r20, 0x00	; 0
+    100c:	60 e0       	ldi	r22, 0x00	; 0
+    100e:	ce 01       	movw	r24, r28
+    1010:	07 96       	adiw	r24, 0x07	; 7
+    1012:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+				lcd.ledOn();
+    1016:	ce 01       	movw	r24, r28
+    1018:	07 96       	adiw	r24, 0x07	; 7
+    101a:	0e 94 44 03 	call	0x688	; 0x688 <_ZN7Display5ledOnEv>
+				lcd.sendString("    TREVOGA");
+    101e:	6a e6       	ldi	r22, 0x6A	; 106
+    1020:	71 e0       	ldi	r23, 0x01	; 1
+    1022:	ce 01       	movw	r24, r28
+    1024:	07 96       	adiw	r24, 0x07	; 7
+    1026:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+				sound.soundOn();
+    102a:	86 ec       	ldi	r24, 0xC6	; 198
+    102c:	91 e0       	ldi	r25, 0x01	; 1
+    102e:	0e 94 ff 03 	call	0x7fe	; 0x7fe <_ZN5Sound7soundOnEv>
+    1032:	ff cf       	rjmp	.-2      	; 0x1032 <main+0x49c>
+	}
+}
+
+bool Uart::getProgrammingMode(void)
+{
+	return programmingMode;
+    1034:	80 91 d2 01 	lds	r24, 0x01D2
+				while(1);
+			}
+		//=================================================================
+		}
+	
+		if(uart.getProgrammingMode() == true)
+    1038:	88 23       	and	r24, r24
+    103a:	09 f4       	brne	.+2      	; 0x103e <main+0x4a8>
+    103c:	11 ce       	rjmp	.-990    	; 0xc60 <main+0xca>
+		{
+			if(currentMode == false)
+    103e:	b1 10       	cpse	r11, r1
+    1040:	33 c0       	rjmp	.+102    	; 0x10a8 <main+0x512>
+			{
+				cli();
+    1042:	f8 94       	cli
+				keypad.deInit_ADC();
+    1044:	ce 01       	movw	r24, r28
+    1046:	06 96       	adiw	r24, 0x06	; 6
+    1048:	0e 94 63 03 	call	0x6c6	; 0x6c6 <_ZN6Keypad10deInit_ADCEv>
+				buttons.deInit_Timer0();
+    104c:	ce 01       	movw	r24, r28
+    104e:	05 96       	adiw	r24, 0x05	; 5
+    1050:	0e 94 5e 04 	call	0x8bc	; 0x8bc <_ZN7Buttons13deInit_Timer0Ev>
+				lcd.ledOn();
+    1054:	ce 01       	movw	r24, r28
+    1056:	07 96       	adiw	r24, 0x07	; 7
+    1058:	0e 94 44 03 	call	0x688	; 0x688 <_ZN7Display5ledOnEv>
+				lcd.clearScreen();
+    105c:	ce 01       	movw	r24, r28
+    105e:	07 96       	adiw	r24, 0x07	; 7
+    1060:	0e 94 53 02 	call	0x4a6	; 0x4a6 <_ZN7Display11clearScreenEv>
+				lcd.setCursor(0,0);
+    1064:	40 e0       	ldi	r20, 0x00	; 0
+    1066:	60 e0       	ldi	r22, 0x00	; 0
+    1068:	ce 01       	movw	r24, r28
+    106a:	07 96       	adiw	r24, 0x07	; 7
+    106c:	0e 94 75 02 	call	0x4ea	; 0x4ea <_ZN7Display9setCursorEhh>
+				lcd.sendString("Programming...");
+    1070:	66 e7       	ldi	r22, 0x76	; 118
+    1072:	71 e0       	ldi	r23, 0x01	; 1
+    1074:	ce 01       	movw	r24, r28
+    1076:	07 96       	adiw	r24, 0x07	; 7
+    1078:	0e 94 24 03 	call	0x648	; 0x648 <_ZN7Display10sendStringEPc>
+	UCSR0C =  (1 << UCSZ01)|(1 << UCSZ00); //Set frame: 8data, 1 stop
+}
+
+void Uart::sendUartEn(void)
+{
+	UCSR0B = (1 << TXEN0);
+    107c:	01 ec       	ldi	r16, 0xC1	; 193
+    107e:	10 e0       	ldi	r17, 0x00	; 0
+    1080:	88 e0       	ldi	r24, 0x08	; 8
+    1082:	f8 01       	movw	r30, r16
+    1084:	80 83       	st	Z, r24
+				uart.sendUartEn();
+				uart.sendTxBuff("ProgrOn\n", 9);
+    1086:	49 e0       	ldi	r20, 0x09	; 9
+    1088:	65 e8       	ldi	r22, 0x85	; 133
+    108a:	71 e0       	ldi	r23, 0x01	; 1
+    108c:	ce 01       	movw	r24, r28
+    108e:	01 96       	adiw	r24, 0x01	; 1
+    1090:	0e 94 44 05 	call	0xa88	; 0xa88 <_ZN4Uart10sendTxBuffEPch>
+}
+
+
+void Uart::getchUartEn(void)
+{
+	UCSR0B = (1 << RXCIE0)|(1 << RXEN0);
+    1094:	80 e9       	ldi	r24, 0x90	; 144
+    1096:	f8 01       	movw	r30, r16
+    1098:	80 83       	st	Z, r24
+				uart.getchUartEn();
+				currentMode = true;
+				uart.clearRxBuff();
+    109a:	ce 01       	movw	r24, r28
+    109c:	01 96       	adiw	r24, 0x01	; 1
+    109e:	0e 94 bd 05 	call	0xb7a	; 0xb7a <_ZN4Uart11clearRxBuffEv>
+				sei();
+    10a2:	78 94       	sei
+				lcd.setCursor(0,0);
+				lcd.sendString("Programming...");
+				uart.sendUartEn();
+				uart.sendTxBuff("ProgrOn\n", 9);
+				uart.getchUartEn();
+				currentMode = true;
+    10a4:	bb 24       	eor	r11, r11
+    10a6:	b3 94       	inc	r11
+				uart.clearRxBuff();
+				sei();
+			}
+			
+			if(uart.readRxCommand() != currentCommand)
+    10a8:	ce 01       	movw	r24, r28
+    10aa:	01 96       	adiw	r24, 0x01	; 1
+    10ac:	0e 94 06 05 	call	0xa0c	; 0xa0c <_ZN4Uart13readRxCommandEv>
+    10b0:	90 91 c8 01 	lds	r25, 0x01C8
+    10b4:	89 17       	cp	r24, r25
+    10b6:	09 f4       	brne	.+2      	; 0x10ba <main+0x524>
+    10b8:	ce cd       	rjmp	.-1124   	; 0xc56 <main+0xc0>
+			{
+				currentCommand = uart.readRxCommand();
+    10ba:	ce 01       	movw	r24, r28
+    10bc:	01 96       	adiw	r24, 0x01	; 1
+    10be:	0e 94 06 05 	call	0xa0c	; 0xa0c <_ZN4Uart13readRxCommandEv>
+    10c2:	80 93 c8 01 	sts	0x01C8, r24
+				switch(currentCommand)
+    10c6:	81 30       	cpi	r24, 0x01	; 1
+    10c8:	19 f0       	breq	.+6      	; 0x10d0 <main+0x53a>
+    10ca:	82 30       	cpi	r24, 0x02	; 2
+    10cc:	d1 f1       	breq	.+116    	; 0x1142 <main+0x5ac>
+    10ce:	c3 cd       	rjmp	.-1146   	; 0xc56 <main+0xc0>
+    10d0:	07 ed       	ldi	r16, 0xD7	; 215
+    10d2:	11 e0       	ldi	r17, 0x01	; 1
+    10d4:	81 2c       	mov	r8, r1
+    10d6:	91 2c       	mov	r9, r1
+    10d8:	16 c0       	rjmp	.+44     	; 0x1106 <main+0x570>
+					t = 0;
+					for(uint8_t j = 0; j < 5; j++)
+					{
+						for(uint8_t i = t; i < t+3; i++)
+						{
+							eeprom_write_byte((uint8_t*)i, *(uart.readRxData() + j) - 0x30);
+    10da:	f8 01       	movw	r30, r16
+    10dc:	60 81       	ld	r22, Z
+    10de:	60 53       	subi	r22, 0x30	; 48
+    10e0:	0e 94 24 0a 	call	0x1448	; 0x1448 <__eewr_byte_m328p>
+					case COM_SET_BUTTONS:
+					uint8_t t;
+					t = 0;
+					for(uint8_t j = 0; j < 5; j++)
+					{
+						for(uint8_t i = t; i < t+3; i++)
+    10e4:	93 94       	inc	r9
+    10e6:	89 2d       	mov	r24, r9
+    10e8:	90 e0       	ldi	r25, 0x00	; 0
+    10ea:	8e 15       	cp	r24, r14
+    10ec:	9f 05       	cpc	r25, r15
+    10ee:	ac f3       	brlt	.-22     	; 0x10da <main+0x544>
+						{
+							eeprom_write_byte((uint8_t*)i, *(uart.readRxData() + j) - 0x30);
+						}
+						t += 3;
+    10f0:	0f 2e       	mov	r0, r31
+    10f2:	f3 e0       	ldi	r31, 0x03	; 3
+    10f4:	9f 2e       	mov	r9, r31
+    10f6:	f0 2d       	mov	r31, r0
+    10f8:	98 0c       	add	r9, r8
+    10fa:	0f 5f       	subi	r16, 0xFF	; 255
+    10fc:	1f 4f       	sbci	r17, 0xFF	; 255
+					break;
+					
+					case COM_SET_BUTTONS:
+					uint8_t t;
+					t = 0;
+					for(uint8_t j = 0; j < 5; j++)
+    10fe:	ff e0       	ldi	r31, 0x0F	; 15
+    1100:	9f 16       	cp	r9, r31
+    1102:	59 f0       	breq	.+22     	; 0x111a <main+0x584>
+					{
+						for(uint8_t i = t; i < t+3; i++)
+						{
+							eeprom_write_byte((uint8_t*)i, *(uart.readRxData() + j) - 0x30);
+						}
+						t += 3;
+    1104:	89 2c       	mov	r8, r9
+					case COM_SET_BUTTONS:
+					uint8_t t;
+					t = 0;
+					for(uint8_t j = 0; j < 5; j++)
+					{
+						for(uint8_t i = t; i < t+3; i++)
+    1106:	89 2d       	mov	r24, r9
+    1108:	90 e0       	ldi	r25, 0x00	; 0
+    110a:	7c 01       	movw	r14, r24
+    110c:	23 e0       	ldi	r18, 0x03	; 3
+    110e:	e2 0e       	add	r14, r18
+    1110:	f1 1c       	adc	r15, r1
+    1112:	8e 15       	cp	r24, r14
+    1114:	9f 05       	cpc	r25, r15
+    1116:	0c f3       	brlt	.-62     	; 0x10da <main+0x544>
+    1118:	eb cf       	rjmp	.-42     	; 0x10f0 <main+0x55a>
+	UCSR0C =  (1 << UCSZ01)|(1 << UCSZ00); //Set frame: 8data, 1 stop
+}
+
+void Uart::sendUartEn(void)
+{
+	UCSR0B = (1 << TXEN0);
+    111a:	01 ec       	ldi	r16, 0xC1	; 193
+    111c:	10 e0       	ldi	r17, 0x00	; 0
+    111e:	88 e0       	ldi	r24, 0x08	; 8
+    1120:	f8 01       	movw	r30, r16
+    1122:	80 83       	st	Z, r24
+							eeprom_write_byte((uint8_t*)i, *(uart.readRxData() + j) - 0x30);
+						}
+						t += 3;
+					}
+					uart.sendUartEn();
+					uart.sendTxBuff("ButSet\n", 8);
+    1124:	48 e0       	ldi	r20, 0x08	; 8
+    1126:	6e e8       	ldi	r22, 0x8E	; 142
+    1128:	71 e0       	ldi	r23, 0x01	; 1
+    112a:	ce 01       	movw	r24, r28
+    112c:	01 96       	adiw	r24, 0x01	; 1
+    112e:	0e 94 44 05 	call	0xa88	; 0xa88 <_ZN4Uart10sendTxBuffEPch>
+					uart.clearRxBuff();
+    1132:	ce 01       	movw	r24, r28
+    1134:	01 96       	adiw	r24, 0x01	; 1
+    1136:	0e 94 bd 05 	call	0xb7a	; 0xb7a <_ZN4Uart11clearRxBuffEv>
+}
+
+
+void Uart::getchUartEn(void)
+{
+	UCSR0B = (1 << RXCIE0)|(1 << RXEN0);
+    113a:	80 e9       	ldi	r24, 0x90	; 144
+    113c:	f8 01       	movw	r30, r16
+    113e:	80 83       	st	Z, r24
+    1140:	8a cd       	rjmp	.-1260   	; 0xc56 <main+0xc0>
+			}
+			
+			if(uart.readRxCommand() != currentCommand)
+			{
+				currentCommand = uart.readRxCommand();
+				switch(currentCommand)
+    1142:	04 e1       	ldi	r16, 0x14	; 20
+    1144:	10 e0       	ldi	r17, 0x00	; 0
+					break;
+					
+					case COM_SET_SOUND:
+					for(uint8_t i = 20; i < 23; i++)
+					{
+						eeprom_write_byte((uint8_t*)i, *(uart.readRxData()) - 0x30);
+    1146:	0f 2e       	mov	r0, r31
+    1148:	f5 ed       	ldi	r31, 0xD5	; 213
+    114a:	ef 2e       	mov	r14, r31
+    114c:	f1 e0       	ldi	r31, 0x01	; 1
+    114e:	ff 2e       	mov	r15, r31
+    1150:	f0 2d       	mov	r31, r0
+    1152:	f7 01       	movw	r30, r14
+    1154:	62 81       	ldd	r22, Z+2	; 0x02
+    1156:	60 53       	subi	r22, 0x30	; 48
+    1158:	c8 01       	movw	r24, r16
+    115a:	0e 94 24 0a 	call	0x1448	; 0x1448 <__eewr_byte_m328p>
+    115e:	0f 5f       	subi	r16, 0xFF	; 255
+    1160:	1f 4f       	sbci	r17, 0xFF	; 255
+					uart.clearRxBuff();
+					uart.getchUartEn();
+					break;
+					
+					case COM_SET_SOUND:
+					for(uint8_t i = 20; i < 23; i++)
+    1162:	07 31       	cpi	r16, 0x17	; 23
+    1164:	11 05       	cpc	r17, r1
+    1166:	a9 f7       	brne	.-22     	; 0x1152 <main+0x5bc>
+	UCSR0C =  (1 << UCSZ01)|(1 << UCSZ00); //Set frame: 8data, 1 stop
+}
+
+void Uart::sendUartEn(void)
+{
+	UCSR0B = (1 << TXEN0);
+    1168:	01 ec       	ldi	r16, 0xC1	; 193
+    116a:	10 e0       	ldi	r17, 0x00	; 0
+    116c:	88 e0       	ldi	r24, 0x08	; 8
+    116e:	f8 01       	movw	r30, r16
+    1170:	80 83       	st	Z, r24
+					{
+						eeprom_write_byte((uint8_t*)i, *(uart.readRxData()) - 0x30);
+					}
+					uart.sendUartEn();
+					uart.sendTxBuff("SoundSet\n", 10);
+    1172:	4a e0       	ldi	r20, 0x0A	; 10
+    1174:	66 e9       	ldi	r22, 0x96	; 150
+    1176:	71 e0       	ldi	r23, 0x01	; 1
+    1178:	ce 01       	movw	r24, r28
+    117a:	01 96       	adiw	r24, 0x01	; 1
+    117c:	0e 94 44 05 	call	0xa88	; 0xa88 <_ZN4Uart10sendTxBuffEPch>
+					uart.clearRxBuff();
+    1180:	ce 01       	movw	r24, r28
+    1182:	01 96       	adiw	r24, 0x01	; 1
+    1184:	0e 94 bd 05 	call	0xb7a	; 0xb7a <_ZN4Uart11clearRxBuffEv>
+}
+
+
+void Uart::getchUartEn(void)
+{
+	UCSR0B = (1 << RXCIE0)|(1 << RXEN0);
+    1188:	80 e9       	ldi	r24, 0x90	; 144
+    118a:	f8 01       	movw	r30, r16
+    118c:	80 83       	st	Z, r24
+    118e:	63 cd       	rjmp	.-1338   	; 0xc56 <main+0xc0>
+	}
+}
+
+bool Uart::getProgrammingMode(void)
+{
+	return programmingMode;
+    1190:	80 91 d2 01 	lds	r24, 0x01D2
+				while(1);
+			}
+		//=================================================================
+		}
+	
+		if(uart.getProgrammingMode() == true)
+    1194:	81 11       	cpse	r24, r1
+    1196:	55 cf       	rjmp	.-342    	; 0x1042 <main+0x4ac>
+    1198:	b1 2c       	mov	r11, r1
+    119a:	62 cd       	rjmp	.-1340   	; 0xc60 <main+0xca>
+
+0000119c <__vector_21>:
+		}
+    }
+}
+
+ISR(ADC_vect, ISR_BLOCK)
+{
+    119c:	1f 92       	push	r1
+    119e:	0f 92       	push	r0
+    11a0:	0f b6       	in	r0, 0x3f	; 63
+    11a2:	0f 92       	push	r0
+    11a4:	11 24       	eor	r1, r1
+    11a6:	2f 93       	push	r18
+    11a8:	3f 93       	push	r19
+    11aa:	4f 93       	push	r20
+    11ac:	5f 93       	push	r21
+    11ae:	6f 93       	push	r22
+    11b0:	7f 93       	push	r23
+    11b2:	8f 93       	push	r24
+    11b4:	9f 93       	push	r25
+    11b6:	af 93       	push	r26
+    11b8:	bf 93       	push	r27
+    11ba:	ef 93       	push	r30
+    11bc:	ff 93       	push	r31
+	Keypad::ADC_INTERRUPT();
+    11be:	0e 94 6c 03 	call	0x6d8	; 0x6d8 <_ZN6Keypad13ADC_INTERRUPTEv>
+}
+    11c2:	ff 91       	pop	r31
+    11c4:	ef 91       	pop	r30
+    11c6:	bf 91       	pop	r27
+    11c8:	af 91       	pop	r26
+    11ca:	9f 91       	pop	r25
+    11cc:	8f 91       	pop	r24
+    11ce:	7f 91       	pop	r23
+    11d0:	6f 91       	pop	r22
+    11d2:	5f 91       	pop	r21
+    11d4:	4f 91       	pop	r20
+    11d6:	3f 91       	pop	r19
+    11d8:	2f 91       	pop	r18
+    11da:	0f 90       	pop	r0
+    11dc:	0f be       	out	0x3f, r0	; 63
+    11de:	0f 90       	pop	r0
+    11e0:	1f 90       	pop	r1
+    11e2:	18 95       	reti
+
+000011e4 <__vector_16>:
+
+ISR(TIMER0_OVF_vect,ISR_BLOCK)
+{
+    11e4:	1f 92       	push	r1
+    11e6:	0f 92       	push	r0
+    11e8:	0f b6       	in	r0, 0x3f	; 63
+    11ea:	0f 92       	push	r0
+    11ec:	11 24       	eor	r1, r1
+    11ee:	2f 93       	push	r18
+    11f0:	3f 93       	push	r19
+    11f2:	4f 93       	push	r20
+    11f4:	5f 93       	push	r21
+    11f6:	6f 93       	push	r22
+    11f8:	7f 93       	push	r23
+    11fa:	8f 93       	push	r24
+    11fc:	9f 93       	push	r25
+    11fe:	af 93       	push	r26
+    1200:	bf 93       	push	r27
+    1202:	ef 93       	push	r30
+    1204:	ff 93       	push	r31
+	Buttons::pressedButtonAnalysis(statusOfButtons);
+    1206:	8b ec       	ldi	r24, 0xCB	; 203
+    1208:	91 e0       	ldi	r25, 0x01	; 1
+    120a:	0e 94 67 04 	call	0x8ce	; 0x8ce <_ZN7Buttons21pressedButtonAnalysisEPh>
+}
+    120e:	ff 91       	pop	r31
+    1210:	ef 91       	pop	r30
+    1212:	bf 91       	pop	r27
+    1214:	af 91       	pop	r26
+    1216:	9f 91       	pop	r25
+    1218:	8f 91       	pop	r24
+    121a:	7f 91       	pop	r23
+    121c:	6f 91       	pop	r22
+    121e:	5f 91       	pop	r21
+    1220:	4f 91       	pop	r20
+    1222:	3f 91       	pop	r19
+    1224:	2f 91       	pop	r18
+    1226:	0f 90       	pop	r0
+    1228:	0f be       	out	0x3f, r0	; 63
+    122a:	0f 90       	pop	r0
+    122c:	1f 90       	pop	r1
+    122e:	18 95       	reti
+
+00001230 <__vector_13>:
+
+ISR(TIMER1_OVF_vect, ISR_BLOCK)
+{
+    1230:	1f 92       	push	r1
+    1232:	0f 92       	push	r0
+    1234:	0f b6       	in	r0, 0x3f	; 63
+    1236:	0f 92       	push	r0
+    1238:	11 24       	eor	r1, r1
+    123a:	2f 93       	push	r18
+    123c:	3f 93       	push	r19
+    123e:	4f 93       	push	r20
+    1240:	5f 93       	push	r21
+    1242:	6f 93       	push	r22
+    1244:	7f 93       	push	r23
+    1246:	8f 93       	push	r24
+    1248:	9f 93       	push	r25
+    124a:	af 93       	push	r26
+    124c:	bf 93       	push	r27
+    124e:	ef 93       	push	r30
+    1250:	ff 93       	push	r31
+	currentSignal -> PWM_Generator();
+    1252:	80 91 be 01 	lds	r24, 0x01BE
+    1256:	90 91 bf 01 	lds	r25, 0x01BF
+    125a:	dc 01       	movw	r26, r24
+    125c:	ed 91       	ld	r30, X+
+    125e:	fc 91       	ld	r31, X
+    1260:	01 90       	ld	r0, Z+
+    1262:	f0 81       	ld	r31, Z
+    1264:	e0 2d       	mov	r30, r0
+    1266:	09 95       	icall
+}
+    1268:	ff 91       	pop	r31
+    126a:	ef 91       	pop	r30
+    126c:	bf 91       	pop	r27
+    126e:	af 91       	pop	r26
+    1270:	9f 91       	pop	r25
+    1272:	8f 91       	pop	r24
+    1274:	7f 91       	pop	r23
+    1276:	6f 91       	pop	r22
+    1278:	5f 91       	pop	r21
+    127a:	4f 91       	pop	r20
+    127c:	3f 91       	pop	r19
+    127e:	2f 91       	pop	r18
+    1280:	0f 90       	pop	r0
+    1282:	0f be       	out	0x3f, r0	; 63
+    1284:	0f 90       	pop	r0
+    1286:	1f 90       	pop	r1
+    1288:	18 95       	reti
+
+0000128a <__vector_18>:
+
+ISR(USART_RX_vect, ISR_BLOCK)
+{
+    128a:	1f 92       	push	r1
+    128c:	0f 92       	push	r0
+    128e:	0f b6       	in	r0, 0x3f	; 63
+    1290:	0f 92       	push	r0
+    1292:	11 24       	eor	r1, r1
+    1294:	2f 93       	push	r18
+    1296:	3f 93       	push	r19
+    1298:	4f 93       	push	r20
+    129a:	5f 93       	push	r21
+    129c:	6f 93       	push	r22
+    129e:	7f 93       	push	r23
+    12a0:	8f 93       	push	r24
+    12a2:	9f 93       	push	r25
+    12a4:	af 93       	push	r26
+    12a6:	bf 93       	push	r27
+    12a8:	ef 93       	push	r30
+    12aa:	ff 93       	push	r31
+	Uart::readByte();
+    12ac:	0e 94 8a 04 	call	0x914	; 0x914 <_ZN4Uart8readByteEv>
+    12b0:	ff 91       	pop	r31
+    12b2:	ef 91       	pop	r30
+    12b4:	bf 91       	pop	r27
+    12b6:	af 91       	pop	r26
+    12b8:	9f 91       	pop	r25
+    12ba:	8f 91       	pop	r24
+    12bc:	7f 91       	pop	r23
+    12be:	6f 91       	pop	r22
+    12c0:	5f 91       	pop	r21
+    12c2:	4f 91       	pop	r20
+    12c4:	3f 91       	pop	r19
+    12c6:	2f 91       	pop	r18
+    12c8:	0f 90       	pop	r0
+    12ca:	0f be       	out	0x3f, r0	; 63
+    12cc:	0f 90       	pop	r0
+    12ce:	1f 90       	pop	r1
+    12d0:	18 95       	reti
+
+000012d2 <_GLOBAL__sub_I__ZN7Display7commandEhhhhh>:
+uint8_t currentMenu;
+uint8_t currentCursor;
+uint8_t currentCommand;
+
+//���������� ��������
+Sound sound, *signal[3], *currentSignal;
+    12d2:	86 ec       	ldi	r24, 0xC6	; 198
+    12d4:	91 e0       	ldi	r25, 0x01	; 1
+    12d6:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <_ZN5SoundC1Ev>
+		void soundOff(void);
+		virtual void PWM_Generator(void);
+		
+};
+
+class SoundOne : public Sound
+    12da:	8c eb       	ldi	r24, 0xBC	; 188
+    12dc:	91 e0       	ldi	r25, 0x01	; 1
+    12de:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <_ZN5SoundC1Ev>
+    12e2:	8a ea       	ldi	r24, 0xAA	; 170
+    12e4:	91 e0       	ldi	r25, 0x01	; 1
+    12e6:	90 93 bd 01 	sts	0x01BD, r25
+    12ea:	80 93 bc 01 	sts	0x01BC, r24
+{
+	public:
+		void PWM_Generator(void);
+};
+
+class SoundTwo : public Sound
+    12ee:	8a eb       	ldi	r24, 0xBA	; 186
+    12f0:	91 e0       	ldi	r25, 0x01	; 1
+    12f2:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <_ZN5SoundC1Ev>
+    12f6:	80 eb       	ldi	r24, 0xB0	; 176
+    12f8:	91 e0       	ldi	r25, 0x01	; 1
+    12fa:	90 93 bb 01 	sts	0x01BB, r25
+    12fe:	80 93 ba 01 	sts	0x01BA, r24
+{
+	public:
+		void PWM_Generator(void);
+};
+
+class SoundThree : public Sound
+    1302:	88 eb       	ldi	r24, 0xB8	; 184
+    1304:	91 e0       	ldi	r25, 0x01	; 1
+    1306:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <_ZN5SoundC1Ev>
+    130a:	86 eb       	ldi	r24, 0xB6	; 182
+    130c:	91 e0       	ldi	r25, 0x01	; 1
+    130e:	90 93 b9 01 	sts	0x01B9, r25
+    1312:	80 93 b8 01 	sts	0x01B8, r24
+    1316:	08 95       	ret
+
+00001318 <__cmpsf2>:
+    1318:	40 d0       	rcall	.+128    	; 0x139a <__fp_cmp>
+    131a:	08 f4       	brcc	.+2      	; 0x131e <__cmpsf2+0x6>
+    131c:	81 e0       	ldi	r24, 0x01	; 1
+    131e:	08 95       	ret
+
+00001320 <__floatunsisf>:
+    1320:	e8 94       	clt
+    1322:	09 c0       	rjmp	.+18     	; 0x1336 <__floatsisf+0x12>
+
+00001324 <__floatsisf>:
+    1324:	97 fb       	bst	r25, 7
+    1326:	3e f4       	brtc	.+14     	; 0x1336 <__floatsisf+0x12>
+    1328:	90 95       	com	r25
+    132a:	80 95       	com	r24
+    132c:	70 95       	com	r23
+    132e:	61 95       	neg	r22
+    1330:	7f 4f       	sbci	r23, 0xFF	; 255
+    1332:	8f 4f       	sbci	r24, 0xFF	; 255
+    1334:	9f 4f       	sbci	r25, 0xFF	; 255
+    1336:	99 23       	and	r25, r25
+    1338:	a9 f0       	breq	.+42     	; 0x1364 <__floatsisf+0x40>
+    133a:	f9 2f       	mov	r31, r25
+    133c:	96 e9       	ldi	r25, 0x96	; 150
+    133e:	bb 27       	eor	r27, r27
+    1340:	93 95       	inc	r25
+    1342:	f6 95       	lsr	r31
+    1344:	87 95       	ror	r24
+    1346:	77 95       	ror	r23
+    1348:	67 95       	ror	r22
+    134a:	b7 95       	ror	r27
+    134c:	f1 11       	cpse	r31, r1
+    134e:	f8 cf       	rjmp	.-16     	; 0x1340 <__floatsisf+0x1c>
+    1350:	fa f4       	brpl	.+62     	; 0x1390 <__floatsisf+0x6c>
+    1352:	bb 0f       	add	r27, r27
+    1354:	11 f4       	brne	.+4      	; 0x135a <__floatsisf+0x36>
+    1356:	60 ff       	sbrs	r22, 0
+    1358:	1b c0       	rjmp	.+54     	; 0x1390 <__floatsisf+0x6c>
+    135a:	6f 5f       	subi	r22, 0xFF	; 255
+    135c:	7f 4f       	sbci	r23, 0xFF	; 255
+    135e:	8f 4f       	sbci	r24, 0xFF	; 255
+    1360:	9f 4f       	sbci	r25, 0xFF	; 255
+    1362:	16 c0       	rjmp	.+44     	; 0x1390 <__floatsisf+0x6c>
+    1364:	88 23       	and	r24, r24
+    1366:	11 f0       	breq	.+4      	; 0x136c <__floatsisf+0x48>
+    1368:	96 e9       	ldi	r25, 0x96	; 150
+    136a:	11 c0       	rjmp	.+34     	; 0x138e <__floatsisf+0x6a>
+    136c:	77 23       	and	r23, r23
+    136e:	21 f0       	breq	.+8      	; 0x1378 <__floatsisf+0x54>
+    1370:	9e e8       	ldi	r25, 0x8E	; 142
+    1372:	87 2f       	mov	r24, r23
+    1374:	76 2f       	mov	r23, r22
+    1376:	05 c0       	rjmp	.+10     	; 0x1382 <__floatsisf+0x5e>
+    1378:	66 23       	and	r22, r22
+    137a:	71 f0       	breq	.+28     	; 0x1398 <__floatsisf+0x74>
+    137c:	96 e8       	ldi	r25, 0x86	; 134
+    137e:	86 2f       	mov	r24, r22
+    1380:	70 e0       	ldi	r23, 0x00	; 0
+    1382:	60 e0       	ldi	r22, 0x00	; 0
+    1384:	2a f0       	brmi	.+10     	; 0x1390 <__floatsisf+0x6c>
+    1386:	9a 95       	dec	r25
+    1388:	66 0f       	add	r22, r22
+    138a:	77 1f       	adc	r23, r23
+    138c:	88 1f       	adc	r24, r24
+    138e:	da f7       	brpl	.-10     	; 0x1386 <__floatsisf+0x62>
+    1390:	88 0f       	add	r24, r24
+    1392:	96 95       	lsr	r25
+    1394:	87 95       	ror	r24
+    1396:	97 f9       	bld	r25, 7
+    1398:	08 95       	ret
+
+0000139a <__fp_cmp>:
+    139a:	99 0f       	add	r25, r25
+    139c:	00 08       	sbc	r0, r0
+    139e:	55 0f       	add	r21, r21
+    13a0:	aa 0b       	sbc	r26, r26
+    13a2:	e0 e8       	ldi	r30, 0x80	; 128
+    13a4:	fe ef       	ldi	r31, 0xFE	; 254
+    13a6:	16 16       	cp	r1, r22
+    13a8:	17 06       	cpc	r1, r23
+    13aa:	e8 07       	cpc	r30, r24
+    13ac:	f9 07       	cpc	r31, r25
+    13ae:	c0 f0       	brcs	.+48     	; 0x13e0 <__fp_cmp+0x46>
+    13b0:	12 16       	cp	r1, r18
+    13b2:	13 06       	cpc	r1, r19
+    13b4:	e4 07       	cpc	r30, r20
+    13b6:	f5 07       	cpc	r31, r21
+    13b8:	98 f0       	brcs	.+38     	; 0x13e0 <__fp_cmp+0x46>
+    13ba:	62 1b       	sub	r22, r18
+    13bc:	73 0b       	sbc	r23, r19
+    13be:	84 0b       	sbc	r24, r20
+    13c0:	95 0b       	sbc	r25, r21
+    13c2:	39 f4       	brne	.+14     	; 0x13d2 <__fp_cmp+0x38>
+    13c4:	0a 26       	eor	r0, r26
+    13c6:	61 f0       	breq	.+24     	; 0x13e0 <__fp_cmp+0x46>
+    13c8:	23 2b       	or	r18, r19
+    13ca:	24 2b       	or	r18, r20
+    13cc:	25 2b       	or	r18, r21
+    13ce:	21 f4       	brne	.+8      	; 0x13d8 <__fp_cmp+0x3e>
+    13d0:	08 95       	ret
+    13d2:	0a 26       	eor	r0, r26
+    13d4:	09 f4       	brne	.+2      	; 0x13d8 <__fp_cmp+0x3e>
+    13d6:	a1 40       	sbci	r26, 0x01	; 1
+    13d8:	a6 95       	lsr	r26
+    13da:	8f ef       	ldi	r24, 0xFF	; 255
+    13dc:	81 1d       	adc	r24, r1
+    13de:	81 1d       	adc	r24, r1
+    13e0:	08 95       	ret
+
+000013e2 <__tablejump2__>:
+    13e2:	ee 0f       	add	r30, r30
+    13e4:	ff 1f       	adc	r31, r31
+
+000013e6 <__tablejump__>:
+    13e6:	05 90       	lpm	r0, Z+
+    13e8:	f4 91       	lpm	r31, Z
+    13ea:	e0 2d       	mov	r30, r0
+    13ec:	09 94       	ijmp
+
+000013ee <__itoa_ncheck>:
+    13ee:	bb 27       	eor	r27, r27
+    13f0:	4a 30       	cpi	r20, 0x0A	; 10
+    13f2:	31 f4       	brne	.+12     	; 0x1400 <__itoa_ncheck+0x12>
+    13f4:	99 23       	and	r25, r25
+    13f6:	22 f4       	brpl	.+8      	; 0x1400 <__itoa_ncheck+0x12>
+    13f8:	bd e2       	ldi	r27, 0x2D	; 45
+    13fa:	90 95       	com	r25
+    13fc:	81 95       	neg	r24
+    13fe:	9f 4f       	sbci	r25, 0xFF	; 255
+    1400:	0c 94 03 0a 	jmp	0x1406	; 0x1406 <__utoa_common>
+
+00001404 <__utoa_ncheck>:
+    1404:	bb 27       	eor	r27, r27
+
+00001406 <__utoa_common>:
+    1406:	fb 01       	movw	r30, r22
+    1408:	55 27       	eor	r21, r21
+    140a:	aa 27       	eor	r26, r26
+    140c:	88 0f       	add	r24, r24
+    140e:	99 1f       	adc	r25, r25
+    1410:	aa 1f       	adc	r26, r26
+    1412:	a4 17       	cp	r26, r20
+    1414:	10 f0       	brcs	.+4      	; 0x141a <__utoa_common+0x14>
+    1416:	a4 1b       	sub	r26, r20
+    1418:	83 95       	inc	r24
+    141a:	50 51       	subi	r21, 0x10	; 16
+    141c:	b9 f7       	brne	.-18     	; 0x140c <__utoa_common+0x6>
+    141e:	a0 5d       	subi	r26, 0xD0	; 208
+    1420:	aa 33       	cpi	r26, 0x3A	; 58
+    1422:	08 f0       	brcs	.+2      	; 0x1426 <__utoa_common+0x20>
+    1424:	a9 5d       	subi	r26, 0xD9	; 217
+    1426:	a1 93       	st	Z+, r26
+    1428:	00 97       	sbiw	r24, 0x00	; 0
+    142a:	79 f7       	brne	.-34     	; 0x140a <__utoa_common+0x4>
+    142c:	b1 11       	cpse	r27, r1
+    142e:	b1 93       	st	Z+, r27
+    1430:	11 92       	st	Z+, r1
+    1432:	cb 01       	movw	r24, r22
+    1434:	0c 94 32 0a 	jmp	0x1464	; 0x1464 <strrev>
+
+00001438 <__eerd_byte_m328p>:
+    1438:	f9 99       	sbic	0x1f, 1	; 31
+    143a:	fe cf       	rjmp	.-4      	; 0x1438 <__eerd_byte_m328p>
+    143c:	92 bd       	out	0x22, r25	; 34
+    143e:	81 bd       	out	0x21, r24	; 33
+    1440:	f8 9a       	sbi	0x1f, 0	; 31
+    1442:	99 27       	eor	r25, r25
+    1444:	80 b5       	in	r24, 0x20	; 32
+    1446:	08 95       	ret
+
+00001448 <__eewr_byte_m328p>:
+    1448:	26 2f       	mov	r18, r22
+
+0000144a <__eewr_r18_m328p>:
+    144a:	f9 99       	sbic	0x1f, 1	; 31
+    144c:	fe cf       	rjmp	.-4      	; 0x144a <__eewr_r18_m328p>
+    144e:	1f ba       	out	0x1f, r1	; 31
+    1450:	92 bd       	out	0x22, r25	; 34
+    1452:	81 bd       	out	0x21, r24	; 33
+    1454:	20 bd       	out	0x20, r18	; 32
+    1456:	0f b6       	in	r0, 0x3f	; 63
+    1458:	f8 94       	cli
+    145a:	fa 9a       	sbi	0x1f, 2	; 31
+    145c:	f9 9a       	sbi	0x1f, 1	; 31
+    145e:	0f be       	out	0x3f, r0	; 63
+    1460:	01 96       	adiw	r24, 0x01	; 1
+    1462:	08 95       	ret
+
+00001464 <strrev>:
+    1464:	dc 01       	movw	r26, r24
+    1466:	fc 01       	movw	r30, r24
+    1468:	67 2f       	mov	r22, r23
+    146a:	71 91       	ld	r23, Z+
+    146c:	77 23       	and	r23, r23
+    146e:	e1 f7       	brne	.-8      	; 0x1468 <strrev+0x4>
+    1470:	32 97       	sbiw	r30, 0x02	; 2
+    1472:	04 c0       	rjmp	.+8      	; 0x147c <strrev+0x18>
+    1474:	7c 91       	ld	r23, X
+    1476:	6d 93       	st	X+, r22
+    1478:	70 83       	st	Z, r23
+    147a:	62 91       	ld	r22, -Z
+    147c:	ae 17       	cp	r26, r30
+    147e:	bf 07       	cpc	r27, r31
+    1480:	c8 f3       	brcs	.-14     	; 0x1474 <strrev+0x10>
+    1482:	08 95       	ret
+
+00001484 <_exit>:
+    1484:	f8 94       	cli
+
+00001486 <__stop_program>:
+    1486:	ff cf       	rjmp	.-2      	; 0x1486 <__stop_program>
